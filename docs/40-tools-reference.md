@@ -5,161 +5,117 @@ order: 40
 
 # Tools Reference
 
-Every tool below is registered as a WordPress ability named `wpmcp/<tool-name>` (for example, `wpmcp/get-page`), in the `wpmcp` ability category, via `src/Plugin.php`. Unless noted otherwise, every ability's `permission_callback` requires the calling user to have the `edit_posts` capability, this applies uniformly to reads, writes, and the safety tools; there is currently no finer-grained per-tool capability. All abilities currently ship on the free tier; none are gated to Pro yet.
+Every tool below is registered as a WordPress ability named `wpmcp/<tool-name>` (for example, `wpmcp/get-page`), in the `wpmcp` ability category, via `src/Plugin.php`. Each ability has its own `permission_callback`: most content tools require `edit_posts`, but domains that touch more sensitive surfaces (users, plugins/themes, database, filesystem, WooCommerce, menus) are gated by their own matching WordPress capability, noted per section below. All abilities currently ship on the free tier; none are gated to Pro yet.
 
-"Safe-wrapped" below means the tool routes its mutation through `Safe_Mutation::run()`, so it is snapshotted before it runs and can be undone with `rollback-operation`. Where a tool is not safe-wrapped, the reference explains why.
+"Undoable" below means the tool routes its mutation through `Safe_Mutation::run()`, so it is snapshotted before it runs and can be undone with `rollback-operation`. "Disabled by default" means a site owner must explicitly opt in via a `wpmcp_enable_*` filter (and the caller must pass `confirm: true`) before the tool will run at all. "Read-only" tools never write anything. See [The safety model](30-safety-model.md) for how the snapshot/rollback engine works, and [WooCommerce tools](60-woocommerce.md) for the store-specific detail on that domain.
 
-## Read tools
+## Content (`edit_posts`)
 
-### `get-page`
+Create, read, update, delete, and organize posts, pages, and custom post types.
 
-Reads a page's title, content, and whether it is built with Elementor.
+- `list-post-types`, `list-taxonomies` read-only. List registered post types and taxonomies.
+- `list-posts`, `get-post` read-only. Search/list posts by type, status, search text, author, or parent; read one post's full detail (content, status, terms, meta, featured image).
+- `create-post` not undoable (nothing to snapshot; a new object has no prior state). Create a post, page, or custom post type.
+- `update-post` undoable. Partially update a post's fields, terms, meta, or featured image.
+- `delete-post` undoable on the force path only. Trashes by default (WordPress's own trash is already reversible); `force: true` permanently deletes and is disabled by default, requiring `confirm: true`.
+- `set-post-terms` undoable. Assign taxonomy terms to a post: replace, append, or remove.
+- `update-blocks` undoable, verified. Replace a page's Gutenberg block markup; verifies the new markup still parses before considering the write successful.
+- `get-page` read-only. Reads a page's title, content, and whether it is built with Elementor.
 
-- **Args:** `id` (integer, required).
-- **Returns:** `id`, `title`, `content`, `is_elementor` (true if the `_elementor_edit_mode` post meta is set).
-- **Safety:** read-only, not applicable.
+## Media (`edit_posts`)
 
-### `get-post`
+- `get-media` read-only. Full attachment detail: sizes, dimensions, mime type, alt text, caption, description.
+- `update-media` undoable. Update title, alt text, caption, and/or description.
+- `delete-media` undoable, disabled by default. Deletes an attachment; disabled by default because file bytes on disk cannot be restored even though the database record can be (see [Safety model](30-safety-model.md#known-limitations-stated-honestly)).
+- `sideload-image` not undoable (creates only). Downloads an image from a URL into the Media Library as a new attachment.
 
-Reads a post/page/custom post type's full detail: content, status, terms, meta, and featured image.
+## Settings (`manage_options`)
 
-- **Args:** `post_id` (integer, required).
-- **Returns:** `post_id`, `post_type`, `title`, `slug`, `status`, `content`, `excerpt`, `date`, `modified`, `parent`, `permalink`, `terms` (grouped by taxonomy), `meta` (protected/underscore-prefixed keys are filtered out), `featured_image` (`{id, url}` or `null`), `is_elementor`.
-- **Safety:** read-only.
+- `get-settings` read-only. Reads site settings from a strict allowlist (general, reading, writing, discussion, media, permalinks).
+- `update-settings` undoable, per key. Updates one or more allowlisted settings; validates and coerces each value, applies the valid subset even if some keys fail, and snapshots each changed option individually so any subset of a batch write can be undone independently.
 
-### `list-posts`
+## Users (per-tool capability)
 
-Search or list posts, pages, or custom post types.
+- `list-users` (`list_users`), `get-user` (`list_users`) read-only. Safe summary rows and full profile detail; never return password hashes.
+- `create-user` (`create_users`) not undoable (creates only). Creates a non-admin user with an auto-generated password (never returned) and emails the new user; rejects admin and unknown roles.
+- `update-user` (`edit_users`) undoable. Updates a non-admin user's profile fields; refuses admin-capable users; never changes role or password.
 
-- **Args:** `post_type` (default `post`), `status` (default `any`; one of `publish`, `future`, `draft`, `pending`, `private`, `trash`, `any`), `search`, `author` (integer), `parent` (integer), `per_page` (1-100, default 20), `page`, `orderby` (`date`, `modified`, `title`, `menu_order`, `ID`), `order` (`ASC`/`DESC`, default `DESC`).
-- **Returns:** `posts` (array of summaries), `total`, `pages`, `page`.
-- **Safety:** read-only.
+There is deliberately no delete-user or role-change tool.
 
-### `list-post-types`
+## Comments (per-tool capability)
 
-Lists registered post types.
+- `list-comments`, `get-comment` (`moderate_comments`) read-only. Summary rows and single-comment detail.
+- `moderate-comment` (`moderate_comments`) undoable. Approve, unapprove, spam, trash, or untrash a comment.
+- `edit-comment` (`edit_comments`) undoable. Edit a comment's content and/or author fields.
+- `delete-comment` (`edit_comments`) undoable, disabled by default. Permanently deletes a comment; the resurrected comment gets a new ID on rollback since WordPress always assigns a fresh auto-increment ID.
 
-- **Args:** `public_only` (boolean, default `true`).
-- **Returns:** `post_types`, each with `name`, `label`, `hierarchical`, `public`, `taxonomies`. Internal WordPress-only types (revisions, nav menu items, templates, `wp_navigation`, `attachment`, etc.) are always excluded.
-- **Safety:** read-only.
+## Plugins and themes (per-tool capability)
 
-### `list-taxonomies`
+Package management: install, activate, update, and remove plugins and themes.
 
-Lists registered taxonomies, optionally filtered to those attached to a given post type.
+- `list-plugins`, `list-themes` (`activate_plugins`) read-only. Active status, protected-package flag, pending updates, parent theme.
+- `activate-plugin`, `deactivate-plugin` (`activate_plugins`) undoable. Snapshot the prior `active_plugins` option. Deactivation refuses protected packages (wpmcp itself, Elementor).
+- `switch-theme` (`switch_themes`) undoable. Snapshots the prior template/stylesheet options.
+- `install-plugin` (`install_plugins`), `install-theme` (`install_themes`) not undoable (creates only). Install from wordpress.org by slug, optionally activating.
+- `update-plugin` (`update_plugins`), `update-theme` (`update_themes`) not undoable, disabled by default. Update to the latest wordpress.org version; file changes have no backup, so these are opt-in and require `confirm: true`.
+- `delete-plugin` (`delete_plugins`), `delete-theme` (`delete_themes`) not undoable, disabled by default. Permanently delete installed files; refuse protected, active, or (for themes) active-parent packages; require `confirm: true`.
 
-- **Args:** `post_type` (string, optional; if omitted, lists all taxonomies).
-- **Returns:** `taxonomies`, each with `name`, `label`, `hierarchical`, `object_types`.
-- **Safety:** read-only.
+## Database (`manage_options`)
 
-### `get-media`
+Direct table access, gated at `manage_options` since it is equivalent to phpMyAdmin-level access to the site.
 
-Reads a Media Library attachment's full detail.
+- `list-tables`, `describe-table` read-only. Table inventory with row counts/sizes; column, type, and key detail for one table.
+- `query` read-only. Runs `SELECT`/`SHOW`/`DESCRIBE`/`EXPLAIN`/`WITH` only; writes, DDL, stacked statements, and file-access SQL are rejected before execution; results are capped.
+- `insert-row` not undoable, disabled by default. Inserts a row via `$wpdb->insert()` (parameterized); refuses protected tables.
+- `update-rows`, `delete-rows` not undoable, disabled by default. Require a mandatory equality `WHERE` and `confirm: true`; refuse protected tables (`wp_users`/`wp_usermeta` by default, extendable). These capture a before-image to a capped audit log but honestly report `recoverable: false`: arbitrary-table rollback is out of scope for the snapshot engine, unlike the post/option/user/comment/order paths above.
 
-- **Args:** `media_id` (integer, required).
-- **Returns:** `media_id`, `title`, `slug`, `url`, `mime_type`, `alt`, `caption`, `description`, `date`, `post_parent`, `width`, `height`, `sizes` (per registered image size), `metadata` (raw attachment metadata array).
-- **Safety:** read-only. Errors if the ID is not an `attachment` post type.
+## Filesystem (`manage_options`, requires `edit_files`, honors `DISALLOW_FILE_EDIT`)
 
-### `get-settings`
+Every path is confined to the WordPress install root; path traversal, symlink escapes, null bytes, and absolute paths outside the root are all rejected.
 
-Reads site settings from a strict allowlist (`Settings_Registry`), covering the general, reading, writing, discussion, media, and permalinks groups.
+- `read-file`, `list-directory`, `search-files` read-only. Read a file; list a directory (optionally recursive); search file contents for a substring, filterable by extension.
+- `write-file`, `edit-file` undoable, disabled by default. Create/overwrite a file, or replace an exact string in one; both back up the original file first, so `recoverable: true` is a real byte-for-byte guarantee, not just a log entry.
+- `delete-file` undoable, disabled by default. Deletes a file after backing it up first; requires `confirm: true`.
+- All filesystem tools refuse `wp-config.php` and `.htaccess` regardless of path.
 
-- **Args:** `group` (string, optional filter), `keys` (array of option names, optional filter).
-- **Returns:** `settings`, each row with `key`, `group`, `type` (`string`/`int`/`bool`/`enum`), coerced `value`, `writable` (false for `admin_email`, `siteurl`, `home`), and `options` (the allowed enum values, when applicable).
-- **Safety:** read-only. Only options in the allowlist are visible at all, regardless of what is requested.
+## Performance (`manage_options`)
 
-## Content writes
+- `analyze-performance` read-only. Scans server configuration, WordPress internals (database size, autoloaded options, cron backlog, object cache, OPcache, plugin count), and a target page (defaults to the frontpage) for bottlenecks. Returns a scored report with severities and ranked, actionable recommendations. The optional page fetch is SSRF-safe: it only ever resolves to this site's own host.
 
-### `create-post`
+## Security scanner (`manage_options`)
 
-Creates a new post, page, or custom post type, optionally with terms and meta.
+- `scan-security` read-only. Scans this site across four areas: PHP malware heuristics (uploads plus active plugins/themes, or the whole tree with `deep: true`), WordPress core file integrity against official wordpress.org checksums, configuration hardening (file editor, debug output, admin username, XML-RPC, version disclosure, HTTPS, security headers), and outdated/abandoned software. Returns a scored report (0-100, graded A-F) with severities and ranked recommendations. Self-contained; scans this site only.
 
-- **Args:** `post_type` (default `post`), `title`, `content`, `excerpt`, `status` (one of `draft`, `publish`, `pending`, `private`, `future`; default `draft`), `slug`, `parent` (integer), `terms` (object of taxonomy => term list), `meta` (object).
-- **Returns:** `post_id`, `status`, `permalink`.
-- **Safety: not safe-wrapped.** Creating a brand-new post cannot overwrite or destroy any existing content, so there is nothing to snapshot. Blocked from targeting internal/non-writable post types (`revision`, `nav_menu_item`, `attachment`, block templates, etc.) and from writing protected/underscore-prefixed meta keys.
+## WooCommerce store tools (per-tool capability)
 
-### `update-post`
+Full detail in [WooCommerce tools](60-woocommerce.md). Summary:
 
-Partially updates an existing post's fields, terms, meta, or featured image.
+- `list-products`, `get-product`, `list-product-categories` (`manage_woocommerce`) read-only.
+- `list-orders`, `get-order` (`edit_shop_orders`) read-only, HPOS- and CPT-safe.
+- `get-sales-report` (`manage_woocommerce`) read-only. Order count, gross sales, items sold, and top products over a date range.
+- `create-product` (`manage_woocommerce`) not undoable (creates only); a mistaken product is removed with `delete-product`.
+- `update-product` (`manage_woocommerce`) undoable. A product is a post under the hood, so it uses the same snapshot/restore path as `update-post`: price, stock, and description restore exactly.
+- `delete-product` (`manage_woocommerce`) undoable, disabled by default. Trash by default, `force: true` for permanent (resurrects at the original ID on rollback).
+- `update-order-status` (`edit_shop_orders`) undoable. Snapshotted via the `wc_order` object type; restores the prior status exactly.
+- `add-order-note` (`edit_shop_orders`) not undoable (additive only).
 
-- **Args:** `post_id` (required), `title`, `content`, `excerpt`, `status`, `slug`, `parent`, `terms` (object), `terms_mode` (`replace`, default, or `append`), `meta` (object), `featured_image` (`{id}` object to set, or `null` to remove), `session_id`.
-- **Returns:** `operation_id`, `post_id`.
-- **Safety: safe-wrapped.** Snapshots the post before applying any change. Rejects writes to non-writable post types or protected meta keys.
+## Navigation menus (`edit_theme_options`)
 
-### `delete-post`
-
-Deletes a post. Trashes by default; permanently deletes with `force: true`.
-
-- **Args:** `post_id` (required), `force` (boolean), `session_id`.
-- **Returns (trash path):** `post_id`, `deleted: "trashed"`. **Returns (force path):** `operation_id`, `post_id`, `deleted: "deleted"`.
-- **Safety: safe on force only.** The default trash path is **not** safe-wrapped, WordPress's own trash is already reversible, so a redundant snapshot adds nothing. The `force: true` path **is** safe-wrapped, since it permanently removes the post row (see [Safety model](30-safety-model.md#force-delete-and-resurrection-with-id-verification) for how rollback resurrects a force-deleted post).
-
-### `set-post-terms`
-
-Assigns taxonomy terms to a post.
-
-- **Args:** `post_id` (required), `taxonomy` (required), `terms` (array, required), `mode` (`replace` default, `append`, or `remove`), `session_id`.
-- **Returns:** `operation_id`, `post_id`, `taxonomy`, `terms` (the resulting term list after the change).
-- **Safety: safe-wrapped.**
-
-## Media
-
-### `update-media`
-
-Updates an attachment's title, alt text, caption, and/or description.
-
-- **Args:** `media_id` (required), `title`, `alt`, `caption`, `description`, `session_id`.
-- **Returns:** `operation_id`, `media_id`, `updated` (array of which fields changed).
-- **Safety: safe-wrapped.** Attachments are posts (`post_type = attachment`), so they use the same generic post snapshot/restore path as `update-post`: full row, all meta (including `_wp_attachment_image_alt`), and terms.
-
-### `delete-media`
-
-Deletes a Media Library attachment. **Disabled by default.**
-
-- **Args:** `media_id` (required), `confirm` (boolean, required, must be `true`), `force` (boolean), `session_id`.
-- **Returns (trashed, native):** `media_id`, `deleted: "trashed"`, `files_recoverable: true`. **Returns (deleted):** `operation_id`, `media_id`, `deleted: "deleted"`, `files_recoverable: false`, `warning` (points at the file-recovery limitation).
-- **Safety: safe-wrapped**, except when the deletion is naturally covered by WordPress's own trash (only happens when the site defines `MEDIA_TRASH` truthy and `force` was not requested; most sites don't set this constant, so this default-trash case is uncommon in practice).
-- **Disabled by default:** a site must explicitly opt in with `add_filter('wpmcp_enable_delete_media', '__return_true')` before this tool will run at all, in addition to the caller passing `confirm: true` on every call. See [Safety model](30-safety-model.md#known-limitations-stated-honestly) for why: rollback restores the database record but not the physical file bytes once they're unlinked from disk (issue #24).
-
-### `sideload-image`
-
-Downloads an image from a URL into the Media Library as a new attachment.
-
-- **Args:** `url` (required), `post_id` (integer, optional parent), `description`, `alt`.
-- **Returns:** `media_id`, `url`.
-- **Safety: not safe-wrapped.** Like `create-post`, this only ever creates a brand-new object; there is nothing pre-existing to snapshot or roll back.
-
-## Settings
-
-### `update-settings`
-
-Updates one or more site settings from the same strict allowlist `get-settings` reads from.
-
-- **Args:** `settings` (object of key => value, required).
-- **Returns:** `updated` (object of key => coerced value actually applied), `skipped` (array of `{key, reason}` for keys rejected as not-allowlisted, read-only, or failing validation), `rewrite_flushed` (boolean), `operation_ids` (array, one per key that actually changed).
-- **Safety: safe-wrapped, per key.** Each changed option is snapshotted and applied individually through `Safe_Mutation`, with `object_type: 'option'`, so any subset of a batch write can be independently undone via `rollback-operation`. Keys that are unchanged (value already matches) are reported as applied but do not consume a snapshot/history slot. Validation includes enum checks, int range clamping, and rejecting unsafe permalink structures; invalid or non-writable keys are skipped and reported rather than silently dropped, and the rest of the batch still applies.
+- `list-menus`, `get-menu`, `list-menu-locations` read-only. Menu summaries, one menu's ordered items, and the theme's registered locations with their assigned menu.
+- `create-menu` not undoable (creates only); a mistaken menu is removed with `delete-menu`.
+- `add-menu-item` not undoable (additive); a mistaken item is removed with `remove-menu-item`.
+- `update-menu-item` undoable. A menu item is a post under the hood, so it restores exactly via the same post snapshot path.
+- `remove-menu-item` undoable. Resurrects the removed item at its original ID, re-attached to its menu.
+- `assign-menu-to-location` undoable. Snapshotted via the `option` object type (the assignment lives in a theme_mod).
+- `delete-menu` not undoable, disabled by default. Removes a nav_menu term; the menu name and its items are returned in the response so it can be rebuilt manually, since term deletion is not automatically reversible.
 
 ## Safety tools
 
-### `list-operations`
+Not tied to any one domain: these read and control the snapshot history itself.
 
-Lists recent agent operations from the snapshot history. Does not leak snapshot payloads.
-
-- **Args:** `limit` (integer, default 20).
-- **Returns:** `operations`, each with `operation_id`, `session_id`, `tool_name`, `object_type`, `object_id`, `created_at`.
-
-### `rollback-operation`
-
-Undoes a single operation by restoring its pre-change snapshot.
-
-- **Args:** `operation_id` (string, required).
-- **Returns:** `restored` (boolean).
-
-### `rollback-session`
-
-Unwinds every operation from a given session, restoring each distinct object to its earliest snapshot within that session (its pre-session state, subject to the free-tier retention limitation described in [Safety model](30-safety-model.md#known-limitations-stated-honestly)).
-
-- **Args:** `session_id` (string, required).
-- **Returns:** `restored_count` (integer; counts snapshot rows processed, not distinct objects restored, so it can exceed the number of objects actually changed).
+- `list-operations` read-only. Lists recent agent operations from the snapshot history (tool, object type/id, session, timestamp). Never leaks snapshot payloads.
+- `rollback-operation` undo. Restores one operation's pre-change snapshot by `operation_id`.
+- `rollback-session` undo. Unwinds every operation from a session, restoring each distinct object to its earliest snapshot within that session (see [Safety model](30-safety-model.md#known-limitations-stated-honestly) for the free-tier retention caveat).
 
 ## Not yet shipped
 

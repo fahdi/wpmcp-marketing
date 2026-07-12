@@ -23,6 +23,7 @@
     "30-safety-model.md",
     "40-tools-reference.md",
     "50-free-vs-pro.md",
+    "60-woocommerce.md",
     "90-contributing-and-tests.md"
   ];
 

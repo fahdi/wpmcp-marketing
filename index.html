@@ -283,6 +283,16 @@
         <p>A quick check runs right after every change. If something looks broken, it gets reversed automatically, before it ever reaches a shopper.</p>
       </article>
       <article class="feature-card reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6-6 6 6M12 3v14M5 21h14"/></svg></div>
+        <h3>Runs the whole store, not just the blog</h3>
+        <p>Products, orders, and sales reports, customers and staff, comments, navigation menus, plugins and themes. Dukandar manages what a real shop owner actually touches every week, and every change to a product price or an order status is just as undoable as a page edit.</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Watches for trouble, not just mistakes</h3>
+        <p>A built-in security scanner checks for malware, tampered core files, weak configuration, and outdated software, so you find out about a compromised plugin before an AI agent, or anyone else, does.</p>
+      </article>
+      <article class="feature-card reveal">
         <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
         <h3>Free and open, for real</h3>
         <p>GPL-2.0. The saving and restoring, the part that actually protects your store, is free forever, not a locked feature behind a paywall.</p>
@@ -295,32 +305,29 @@
     <div class="section-head reveal">
       <span class="eyebrow">Under the hood</span>
       <h2>For the technically curious: what the AI can actually touch.</h2>
-      <p>Dukandar is built on the plugin <code data-brand-plugin-slug>wpmcp</code>, which speaks the Model Context Protocol (MCP), so it works with Claude, Cursor, or any compatible AI client. This table is the full list of what it can read, change, and undo. If you just want the reassurance, you do not need to read it, it is here for developers and agencies who like to check under the hood.</p>
+      <p>Dukandar is built on the plugin <code data-brand-plugin-slug>wpmcp</code>, which speaks the Model Context Protocol (MCP), so it works with Claude, Cursor, or any compatible AI client. It now covers 80+ abilities across the whole store, grouped below by area. If you just want the reassurance, you do not need to read it, it is here for developers and agencies who like to check under the hood.</p>
     </div>
 
     <div class="tools-table-wrap reveal">
       <table class="tools-table">
         <thead>
-          <tr><th>Capability</th><th>Type</th><th>What it does</th></tr>
+          <tr><th>Area</th><th>Type</th><th>What it does</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>get-page</code></td><td><span class="pill pill-read">read</span></td><td>Read a page's title, content, and whether it is an Elementor page</td></tr>
-          <tr><td><code>update-blocks</code></td><td><span class="pill pill-safe">safe change</span></td><td>Replace a page's content, saved and checked automatically</td></tr>
-          <tr><td><code>create-post</code></td><td><span class="pill pill-write">new content</span></td><td>Create a post, page, or product, with categories and details</td></tr>
-          <tr><td><code>get-post</code></td><td><span class="pill pill-read">read</span></td><td>Read a page or product's full content, status, and image</td></tr>
-          <tr><td><code>update-post</code></td><td><span class="pill pill-safe">safe change</span></td><td>Update part of a page or product: fields, categories, or image</td></tr>
-          <tr><td><code>delete-post</code></td><td><span class="pill pill-safe">safe on force</span></td><td>Move a page or product to trash by default, or delete permanently with confirmation</td></tr>
-          <tr><td><code>list-posts</code></td><td><span class="pill pill-read">read</span></td><td>Search or list pages and products by type, status, or text</td></tr>
-          <tr><td><code>set-post-terms</code></td><td><span class="pill pill-safe">safe change</span></td><td>Assign categories or tags: replace, add, or remove</td></tr>
-          <tr><td><code>get-media</code></td><td><span class="pill pill-read">read</span></td><td>Read a photo or file's details: size, dimensions, alt text</td></tr>
-          <tr><td><code>update-media</code></td><td><span class="pill pill-safe">safe change</span></td><td>Update a photo or file's title, alt text, or caption</td></tr>
-          <tr><td><code>delete-media</code></td><td><span class="pill pill-safe">safe change</span></td><td>Delete a photo or file. Off by default, needs explicit confirmation</td></tr>
-          <tr><td><code>sideload-image</code></td><td><span class="pill pill-write">new content</span></td><td>Pull an image from a URL into your media library as a new file</td></tr>
-          <tr><td><code>get-settings</code></td><td><span class="pill pill-read">read</span></td><td>Read store and site settings with their current values</td></tr>
-          <tr><td><code>update-settings</code></td><td><span class="pill pill-safe">safe change</span></td><td>Update allowed settings, applying what works even if part of a batch fails</td></tr>
-          <tr><td><code>list-operations</code></td><td><span class="pill pill-read">activity log</span></td><td>List recent AI changes, with no saved data exposed</td></tr>
-          <tr><td><code>rollback-operation</code></td><td><span class="pill pill-safe">undo</span></td><td>Undo a single change</td></tr>
-          <tr><td><code>rollback-session</code></td><td><span class="pill pill-safe">undo</span></td><td>Undo an entire AI session, back to where it started</td></tr>
+          <tr><td>Content</td><td><span class="pill pill-safe">safe change</span></td><td>Create, edit, organize, and delete posts, pages, and products, saved before every change and checked automatically</td></tr>
+          <tr><td>Media</td><td><span class="pill pill-safe">safe change</span></td><td>Read and update photo and file details; pull images from a URL straight into your library</td></tr>
+          <tr><td>Site &amp; store settings</td><td><span class="pill pill-safe">safe change</span></td><td>Read and update site settings, applying what works even if part of a batch fails</td></tr>
+          <tr><td>Users</td><td><span class="pill pill-safe">safe change</span></td><td>List and update customer/staff profiles; never touches passwords or admin accounts</td></tr>
+          <tr><td>Comments</td><td><span class="pill pill-safe">safe change</span></td><td>Approve, edit, or moderate comments, every change saved before it happens</td></tr>
+          <tr><td>WooCommerce products</td><td><span class="pill pill-safe">safe change</span></td><td>Create products, update price and stock, browse categories, all undoable with one click</td></tr>
+          <tr><td>WooCommerce orders</td><td><span class="pill pill-safe">safe change</span></td><td>Review orders, update order status, add notes, pull sales reports, status changes are one-click undoable</td></tr>
+          <tr><td>Navigation menus</td><td><span class="pill pill-safe">safe change</span></td><td>Build and rearrange menus, assign them to theme locations, safely reversible</td></tr>
+          <tr><td>Plugins &amp; themes</td><td><span class="pill pill-write">write</span></td><td>Install, activate, and update plugins and themes; risky file changes are off by default</td></tr>
+          <tr><td>Database</td><td><span class="pill pill-read">read (mostly)</span></td><td>Inspect tables and run read-only queries; raw writes are off by default and admin-only</td></tr>
+          <tr><td>Filesystem</td><td><span class="pill pill-safe">safe change</span></td><td>Read, search, and edit files inside your WordPress install; every write is backed up first and off by default</td></tr>
+          <tr><td>Performance analyzer</td><td><span class="pill pill-read">read</span></td><td>Scans your server, database, and pages for slowdowns and returns a scored, ranked report</td></tr>
+          <tr><td>Security scanner</td><td><span class="pill pill-read">read</span></td><td>Checks for malware, core file tampering, weak configuration, and outdated software, with a graded report</td></tr>
+          <tr><td>Safety &amp; history</td><td><span class="pill pill-safe">undo</span></td><td>List recent AI changes and undo one change or a whole session, back to where it started</td></tr>
         </tbody>
       </table>
     </div>

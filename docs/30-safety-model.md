@@ -26,7 +26,7 @@ Every write tool returns an `operation_id` in its response specifically so a cal
 
 ## What gets captured
 
-Snapshot capture is dispatched by object type (`src/Safety/Snapshot.php`):
+Snapshot capture is dispatched by object type (`src/Safety/Snapshot.php`), and now covers five object types: `post`, `option`, `user`, `comment`, and `wc_order`. This is what makes product edits, order status changes, comment edits, and menu edits undoable through the same engine as posts and settings, not a separate one-off mechanism per domain.
 
 **Posts (and attachments, which are WordPress posts of type `attachment`):**
 
@@ -35,10 +35,24 @@ Snapshot capture is dispatched by object type (`src/Safety/Snapshot.php`):
 - **Taxonomy term assignments**, captured per taxonomy registered on that post type via `wp_get_object_terms()`.
 - **Comments and their comment meta**, captured only for use by the force-delete resurrection path (see below). WordPress's `wp_delete_post($id, true)` destroys comments and commentmeta with no equivalent in the trash or in-place-update paths, so they have to be captured up front to be restorable.
 
-**Options (used by `update-settings`):**
+A WooCommerce product is a post (`post_type = product`) and a navigation menu item is a post (`post_type = nav_menu_item`), so `update-product`, `delete-product`, `update-menu-item`, and `remove-menu-item` all restore exactly through this same full-row-plus-meta-plus-terms path: price, stock, description, title, url, parent, and position all come back as they were.
+
+**Options (used by `update-settings` and `assign-menu-to-location`):**
 
 - The option's current value.
 - Whether the option **existed** before the write. Options have no trash/soft-delete equivalent: a write either changes an existing value or introduces a brand-new option. Recording `existed` lets rollback choose between putting the old value back (`update_option()`) or removing the option entirely (`delete_option()`) if it wasn't there before.
+
+**Users (used by `update-user`):**
+
+- The user's core profile fields and all usermeta, captured before any change so `rollback-operation` restores display name, email, url, nickname, name fields, and description exactly. Role and password are never touched by any wpmcp tool, so neither is part of this capture.
+
+**Comments (used by `moderate-comment`, `edit-comment`, and `delete-comment`):**
+
+- The comment row and its comment meta. `delete-comment`'s resurrection path reinserts the comment via `wp_insert_comment()`; the content, author, dates, and post association are restored, but (like force-deleted posts' comments) the comment gets a new auto-increment ID, since WordPress core does not let a caller choose one.
+
+**WooCommerce orders (used by `update-order-status`):**
+
+- The order's prior status, captured via the `wc_order` object type so it is HPOS- and CPT-safe (it does not assume orders are stored as posts). `rollback-operation` restores the exact prior status.
 
 Snapshots are serialized with `gzencode(wp_json_encode($before))` and stored in a `LONGBLOB` column.
 
@@ -49,7 +63,7 @@ Two distinct undo scopes, both backed by the same snapshot table:
 - **`rollback-operation`** restores exactly one snapshot, identified by its `operation_id`. Simple: look up the row, apply that snapshot.
 - **`rollback-session`** unwinds an entire agent session. It pulls every snapshot recorded under a `session_id`, walks them oldest-first, and for each distinct object restores only the **earliest** snapshot seen, that object's state from before the session touched it at all. If the same post was edited three times in one session, only the first (pre-session) snapshot is applied; the two later ones are skipped once the object's identity has already been restored. The tool's return value (`restored_count`) counts snapshot rows processed, not distinct objects restored, so it can be larger than the number of objects that actually changed.
 
-Object identity for deduplication is `object_type:object_id` for posts, and `option:<option name>` for options (the raw database `object_id` column is always `0` for option rows, since options are identified by name, not a numeric ID; the real name lives inside the serialized blob).
+Object identity for deduplication is `object_type:object_id` for posts, users, comments, and orders, and `option:<option name>` for options (the raw database `object_id` column is always `0` for option rows, since options are identified by name, not a numeric ID; the real name lives inside the serialized blob).
 
 ## The meta-purge
 
