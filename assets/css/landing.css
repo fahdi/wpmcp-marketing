@@ -165,6 +165,22 @@
   margin-inline: auto;
 }
 
+/* A faint tint on alternating sections (applied explicitly via .tint in
+   markup, rather than nth-of-type, since not every <section> carries
+   .section), just enough to break long scroll into readable "rooms"
+   without hard dividers or a different background color per section. */
+.section.tint {
+  position: relative;
+}
+.section.tint::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(-1 * var(--edge));
+  background: linear-gradient(180deg, transparent, rgba(160, 172, 194, 0.03) 10%, rgba(160, 172, 194, 0.03) 90%, transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+
 .section-head {
   max-width: 640px;
   margin-bottom: 56px;
@@ -347,20 +363,32 @@
 .feature-card {
   background: var(--bg-panel);
   padding: 32px 28px;
-  transition: background var(--dur-fast) var(--ease-out);
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  position: relative;
 }
-.feature-card:hover { background: var(--bg-panel-2); }
+.feature-card:hover {
+  background: var(--bg-panel-2);
+  transform: translateY(-3px);
+  z-index: 2;
+}
 
 .feature-card .ficon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(6,182,212,0.18));
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, rgba(37,99,235,0.16), rgba(6,182,212,0.16));
+  border: 1px solid rgba(6, 182, 212, 0.16);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
   color: var(--brand-accent-soft);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+  transition: transform var(--dur-fast) var(--ease-spring), border-color var(--dur-fast) var(--ease-out);
+}
+.feature-card:hover .ficon {
+  transform: scale(1.08) rotate(-4deg);
+  border-color: rgba(6, 182, 212, 0.4);
 }
 .feature-card .ficon svg { width: 19px; height: 19px; }
 
@@ -545,12 +573,22 @@ table.tools-table {
   padding: 36px;
   background: var(--bg-panel);
   position: relative;
+  transition: border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.price-card:not(.is-pro) {
+  background: linear-gradient(160deg, var(--bg-panel), rgba(61, 220, 155, 0.05));
+}
+.price-card:not(.is-pro):hover {
+  border-color: rgba(61, 220, 155, 0.35);
+  transform: translateY(-2px);
 }
 
 .price-card.is-pro {
   background: linear-gradient(160deg, var(--bg-panel), rgba(37,99,235,0.08));
   border-color: rgba(37, 99, 235, 0.4);
 }
+.price-card.is-pro:hover { transform: translateY(-2px); }
 
 .price-card .ptag {
   font-family: var(--font-mono);
@@ -559,6 +597,7 @@ table.tools-table {
   text-transform: uppercase;
   color: var(--ink-500);
 }
+.price-card:not(.is-pro) .ptag { color: var(--signal-ok); }
 .price-card.is-pro .ptag { color: var(--brand-accent-soft); }
 
 .price-card .pname {
