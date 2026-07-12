@@ -32,12 +32,18 @@
   --signal-warn: #f2b23e;
   --signal-danger: #f16a72;
 
-  /* Type, no webfonts/CDNs allowed, so we lean on distinctive system stacks
-     instead of the generic Inter/Roboto/Arial defaults. Display copy gets a
-     humanist serif (editorial, confident); UI copy gets a condensed grotesk;
-     data/code gets a real monospace. */
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-  --font-sans: "Charter", "Noto Sans", "Segoe UI Semibold", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Type. No CDNs, no Google Fonts <link>, ever, this stays a strict-CSP,
+     offline-safe, zero-network-call site. Fraunces and Hanken Grotesk are
+     self-hosted instead: subsetted to the exact glyphs this site uses,
+     converted to woff2, and inlined as base64 data URIs in fonts.css, so
+     there is still no external request, just bytes shipped with the page.
+     Display copy gets Fraunces (a warm, editorial serif with real
+     character, the antidote to another Playfair/Inter pairing); UI copy
+     gets Hanken Grotesk (humanist, confident, a little wider than the
+     default-grotesk crowd); code/data keeps a real system monospace,
+     a webfont buys nothing there and only adds weight. */
+  --font-display: "Fraunces Disp", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: "Hanken Grotesk", "Charter", "Segoe UI Semibold", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "SFMono-Regular", "Berkeley Mono", Consolas, "Liberation Mono", Menlo, monospace;
 
   /* Rhythm */
