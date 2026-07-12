@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dukandar: let AI run your shop, never fear it breaking your store</title>
+<meta name="description" content="Dukandar lets an AI assistant build and manage your WordPress or WooCommerce store. Every change is saved before it happens, so anything the AI does can be undone with one click. Free and open, GPL-2.0.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='256' y2='256'%3E%3Cstop offset='0' stop-color='%232563EB'/%3E%3Cstop offset='1' stop-color='%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='256' height='256' rx='56' fill='url(%23g)'/%3E%3Cg stroke='%23fff' stroke-width='22' stroke-linecap='round' fill='none'%3E%3Cpath d='M151.2 70.5 A62 62 0 1 1 104.8 70.5'/%3E%3C/g%3E%3Cpath d='M80 70.5 L110 52 L110 89 Z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/brand.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/landing.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="atmosphere" aria-hidden="true"><div class="grid-overlay"></div></div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand-mark" href="index.html" aria-label="Dukandar home">
+      <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="hmark" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2563EB"/>
+            <stop offset="1" stop-color="#06B6D4"/>
+          </linearGradient>
+        </defs>
+        <rect width="256" height="256" rx="56" fill="url(#hmark)"/>
+        <g stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none">
+          <path d="M151.2 70.5 A62 62 0 1 1 104.8 70.5"/>
+        </g>
+        <path d="M80 70.5 L110 52 L110 89 Z" fill="#FFFFFF"/>
+      </svg>
+      <span data-brand-name>Dukandar</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#problem">Why</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="docs.html">Docs</a>
+      <a class="btn btn-primary btn-sm" href="https://github.com/fahdi/wpmcp" data-brand-github>GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Every change saved before it happens</span>
+      <h1>Let AI run your shop.<br class="hide-mobile"> Never fear it <span class="text-gradient">breaking your store</span>.</h1>
+      <p class="lede">Dukandar gives an AI assistant the keys to your WordPress or WooCommerce store, updating pages, products, and copy, while quietly saving a copy of everything before it touches it. If it ever gets something wrong, you press one button and your store is back exactly as it was.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/fahdi/wpmcp" data-brand-github>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.11.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          Get the free plugin
+        </a>
+        <a class="btn btn-ghost" href="#how-it-works">See how the undo works</a>
+      </div>
+      <div class="hero-meta">
+        <span><i class="dot" aria-hidden="true"></i> Free to install, no trial</span>
+        <span>Works with WordPress and WooCommerce</span>
+        <span>Your store, your data, self-hosted</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="Live activity log showing a one-click restore">
+      <div class="console">
+        <div class="console-bar">
+          <span class="cdot"></span><span class="cdot"></span><span class="cdot"></span>
+          <span class="ctitle">Your shop &rsaquo; Dukandar &rsaquo; Recent changes</span>
+        </div>
+        <div class="console-body">
+          <div class="op-row">
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Added new product &middot; "Spring Tote Bag"</span>
+            <span class="op-time">2m ago</span>
+            <button class="op-undo" disabled>New</button>
+          </div>
+          <div class="op-row" data-console-row data-state>
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Rewrote homepage banner</span>
+            <span class="op-time">11m ago</span>
+            <button class="op-undo" data-console-undo>Restore</button>
+          </div>
+          <div class="op-row">
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Updated store hours and shipping note</span>
+            <span class="op-time">1h ago</span>
+            <button class="op-undo">Restore</button>
+          </div>
+
+          <div class="console-divider"></div>
+
+          <div class="console-diff">
+            <span class="ctx">--- Homepage banner, saved copy</span>
+            <span class="add is-hidden">+ &lt;h1&gt;Fresh Bakes, Delivered Daily&lt;/h1&gt;</span>
+            <span class="del">- &lt;h1&gt;Fresh Bakes, Delivered Daily&lt;/h1&gt;</span>
+            <span class="ctx">+ &lt;h1&gt;undefined is not a bakery&lt;/h1&gt;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE PROBLEM ================= -->
+  <section class="section" id="problem">
+    <div class="problem">
+      <div class="problem-scenario reveal">
+        <div class="scenario-frame">
+          <div class="scenario-log">
+            <p class="line"><span class="tag">ai&gt;</span> updating homepage banner...</p>
+            <p class="line"><span class="tag">ai&gt;</span> refreshing the product grid...</p>
+            <p class="line"><span class="tag">ai&gt;</span> rewriting the navigation menu...</p>
+            <p class="line bad"><span class="tag">error&gt;</span> something broke, the page is now blank</p>
+            <p class="crack">A customer is trying to check out right now. Your store has been down for eleven minutes, and there is no undo button.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-points">
+        <span class="eyebrow reveal">The problem</span>
+        <div class="problem-point reveal">
+          <span class="num">01</span>
+          <div>
+            <h3>AI is confident, not careful.</h3>
+            <p>An AI assistant editing your live store does not pause before a risky change. It moves with the same confidence whether it is fixing a typo or wiping out your homepage.</p>
+          </div>
+        </div>
+        <div class="problem-point reveal">
+          <span class="num">02</span>
+          <div>
+            <h3>Every other AI tool asks you to just trust it.</h3>
+            <p>Trust is not a safety net. AI is good, not perfect, and one bad change on your storefront is a lost sale and a stressful afternoon you cannot get back.</p>
+          </div>
+        </div>
+        <div class="problem-point reveal">
+          <span class="num">03</span>
+          <div>
+            <h3>A backup from last night will not save you.</h3>
+            <p>A nightly backup does not help when the AI breaks something ninety seconds ago. You need protection at the moment of the change, not the moment of the night.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="section" id="how-it-works">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>Nothing reaches your store without a copy saved first.</h2>
+      <p>Every change the AI makes, a new product, an edited page, a pricing update, follows the same four steps before it counts as done. You never have to trust that it went well. You can check, and undo it if it did not.</p>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipeline-rail" aria-hidden="true"></div>
+
+      <div class="pipeline-step reveal">
+        <div class="step-node">01</div>
+        <h3>Save a copy</h3>
+        <p>Before anything changes, Dukandar quietly saves exactly how that page, product, or setting looked, so there is always a way back.</p>
+      </div>
+
+      <div class="pipeline-step reveal">
+        <div class="step-node">02</div>
+        <h3>Make the change</h3>
+        <p>The AI does what you asked: update copy, add a product, adjust a setting. One clean change, nothing left half-done.</p>
+      </div>
+
+      <div class="pipeline-step reveal" data-fail="true">
+        <div class="step-node">03</div>
+        <h3>Check the result</h3>
+        <p>A quick check confirms the page still works. If something looks broken, it gets reversed automatically before a customer ever sees it.</p>
+      </div>
+
+      <div class="pipeline-step reveal">
+        <div class="step-node">04</div>
+        <h3>Undo, any time</h3>
+        <p>Change your mind later? Restore one change, or roll back an entire AI session, from a single screen in your dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WATCH IT UNDO ================= -->
+  <section class="section">
+    <div class="section-head reveal">
+      <span class="eyebrow">Watch it undo</span>
+      <h2>Click restore. Watch the mistake disappear.</h2>
+      <p>This is a staged demo, not a live connection, but the interaction is the real one: every change Dukandar makes shows up in your dashboard with a Restore button right next to it.</p>
+    </div>
+
+    <div class="undo-demo reveal">
+      <div class="undo-demo-inner">
+        <div>
+          <p class="undo-page-label" data-demo-label>AI editing your homepage</p>
+          <div class="undo-page" data-demo-page>
+            <div class="fake-h1"></div>
+            <div class="fake-line"></div>
+            <div class="fake-line"></div>
+            <div class="fake-line short"></div>
+          </div>
+        </div>
+
+        <div class="undo-control">
+          <button class="undo-button" data-demo-undo aria-label="Toggle undo demo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 10a9 9 0 1 1 2.64 6.36"/>
+              <path d="M3 4v6h6"/>
+            </svg>
+          </button>
+          <span class="undo-label">one click<br>restore</span>
+        </div>
+
+        <div>
+          <p class="undo-page-label">your store dashboard</p>
+          <div class="op-row" style="border:1px solid var(--hairline-strong);">
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Homepage banner updated</span>
+            <span class="op-time">just now</span>
+            <button class="op-undo" disabled>Synced</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="section" id="features">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why shop owners pick Dukandar</span>
+      <h2>Built for the moment the AI gets it wrong.</h2>
+    </div>
+
+    <div class="features-grid">
+      <article class="feature-card reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a9 9 0 1 1 2.64 6.36"/><path d="M3 4v6h6"/></svg></div>
+        <h3>Nothing is ever truly gone</h3>
+        <p>Every change the AI makes is saved before it happens. This is built into the core of how Dukandar works, not something you have to remember to turn on.</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div>
+        <h3>Works with the page builder you already use</h3>
+        <p>Dukandar saves your actual store data, so restoring a page works the same way no matter which page builder or theme created it.</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7z"/></svg></div>
+        <h3>Lives inside your WordPress</h3>
+        <p>It is a single plugin you install once. No separate service to manage, no extra login, no third party holding a copy of your store.</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Undo a whole afternoon, not just one click</h3>
+        <p>Roll back a single change, or unwind everything the AI did in a whole session, back to exactly how your store looked before you started.</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Catches problems before your customers do</h3>
+        <p>A quick check runs right after every change. If something looks broken, it gets reversed automatically, before it ever reaches a shopper.</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h3>Free and open, for real</h3>
+        <p>GPL-2.0. The saving and restoring, the part that actually protects your store, is free forever, not a locked feature behind a paywall.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= TOOLS OVERVIEW (for the technically curious) ================= -->
+  <section class="section" id="tools">
+    <div class="section-head reveal">
+      <span class="eyebrow">Under the hood</span>
+      <h2>For the technically curious: what the AI can actually touch.</h2>
+      <p>Dukandar is built on the plugin <code data-brand-plugin-slug>wpmcp</code>, which speaks the Model Context Protocol (MCP), so it works with Claude, Cursor, or any compatible AI client. This table is the full list of what it can read, change, and undo. If you just want the reassurance, you do not need to read it, it is here for developers and agencies who like to check under the hood.</p>
+    </div>
+
+    <div class="tools-table-wrap reveal">
+      <table class="tools-table">
+        <thead>
+          <tr><th>Capability</th><th>Type</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>get-page</code></td><td><span class="pill pill-read">read</span></td><td>Read a page's title, content, and whether it is an Elementor page</td></tr>
+          <tr><td><code>update-blocks</code></td><td><span class="pill pill-safe">safe change</span></td><td>Replace a page's content, saved and checked automatically</td></tr>
+          <tr><td><code>create-post</code></td><td><span class="pill pill-write">new content</span></td><td>Create a post, page, or product, with categories and details</td></tr>
+          <tr><td><code>get-post</code></td><td><span class="pill pill-read">read</span></td><td>Read a page or product's full content, status, and image</td></tr>
+          <tr><td><code>update-post</code></td><td><span class="pill pill-safe">safe change</span></td><td>Update part of a page or product: fields, categories, or image</td></tr>
+          <tr><td><code>delete-post</code></td><td><span class="pill pill-safe">safe on force</span></td><td>Move a page or product to trash by default, or delete permanently with confirmation</td></tr>
+          <tr><td><code>list-posts</code></td><td><span class="pill pill-read">read</span></td><td>Search or list pages and products by type, status, or text</td></tr>
+          <tr><td><code>set-post-terms</code></td><td><span class="pill pill-safe">safe change</span></td><td>Assign categories or tags: replace, add, or remove</td></tr>
+          <tr><td><code>get-media</code></td><td><span class="pill pill-read">read</span></td><td>Read a photo or file's details: size, dimensions, alt text</td></tr>
+          <tr><td><code>update-media</code></td><td><span class="pill pill-safe">safe change</span></td><td>Update a photo or file's title, alt text, or caption</td></tr>
+          <tr><td><code>delete-media</code></td><td><span class="pill pill-safe">safe change</span></td><td>Delete a photo or file. Off by default, needs explicit confirmation</td></tr>
+          <tr><td><code>sideload-image</code></td><td><span class="pill pill-write">new content</span></td><td>Pull an image from a URL into your media library as a new file</td></tr>
+          <tr><td><code>get-settings</code></td><td><span class="pill pill-read">read</span></td><td>Read store and site settings with their current values</td></tr>
+          <tr><td><code>update-settings</code></td><td><span class="pill pill-safe">safe change</span></td><td>Update allowed settings, applying what works even if part of a batch fails</td></tr>
+          <tr><td><code>list-operations</code></td><td><span class="pill pill-read">activity log</span></td><td>List recent AI changes, with no saved data exposed</td></tr>
+          <tr><td><code>rollback-operation</code></td><td><span class="pill pill-safe">undo</span></td><td>Undo a single change</td></tr>
+          <tr><td><code>rollback-session</code></td><td><span class="pill pill-safe">undo</span></td><td>Undo an entire AI session, back to where it started</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= PRICING ================= -->
+  <section class="section" id="pricing">
+    <div class="section-head reveal">
+      <span class="eyebrow">Free vs Pro</span>
+      <h2>The safety net is free. It is not the upsell.</h2>
+      <p>Pro adds reach and convenience for growing stores and the agencies that run them. It does not gate the thing that keeps your store safe.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <span class="ptag">Core</span>
+        <h3 class="pname">Free</h3>
+        <p class="pnote">Fully functional. No trial, no time limit.</p>
+        <ul class="price-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> The full save, change, check, and restore engine</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Page and content editing with automatic checks</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> One-click restore from your dashboard or the AI</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Last 20 changes kept in history</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> GPL-2.0, self-hosted, no forced tracking</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://github.com/fahdi/wpmcp" data-brand-github>Get the free plugin</a>
+      </div>
+
+      <div class="price-card is-pro reveal">
+        <span class="pro-badge">Planned</span>
+        <span class="ptag">Pro, via Freemius</span>
+        <h3 class="pname">Pro</h3>
+        <p class="pnote">For growing stores and the agencies that run several of them.</p>
+        <ul class="price-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited change history</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Full session restore at any depth</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Elementor deep editing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Preview changes before they apply</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority support</li>
+        </ul>
+        <a class="btn btn-primary" href="docs.html">Read the roadmap</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="section">
+    <div class="final-cta reveal">
+      <span class="eyebrow">Get started</span>
+      <h2>Let the AI build. Keep the undo button.</h2>
+      <p>Install the plugin, connect your AI assistant, and let it start helping with your store. The first safety copy is saved before the first change ever happens.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/fahdi/wpmcp" data-brand-github>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.11.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          Dukandar on GitHub
+        </a>
+        <a class="btn btn-ghost" href="docs.html">Read the docs</a>
+      </div>
+      <pre class="install-cmd"><code>git clone https://github.com/fahdi/wpmcp.git wp-content/plugins/wpmcp
+cd wp-content/plugins/wpmcp
+composer install --no-dev</code></pre>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="brand-mark" href="index.html">
+        <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="fmark" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#2563EB"/>
+              <stop offset="1" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+          <rect width="256" height="256" rx="56" fill="url(#fmark)"/>
+          <g stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none">
+            <path d="M151.2 70.5 A62 62 0 1 1 104.8 70.5"/>
+          </g>
+          <path d="M80 70.5 L110 52 L110 89 Z" fill="#FFFFFF"/>
+        </svg>
+        <span data-brand-name>Dukandar</span>
+      </a>
+      <p>Let AI build and run your online shop, and never fear it breaking your store.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#how-it-works">How it works</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="docs.html">Documentation</a></li>
+        <li><a href="https://github.com/fahdi/wpmcp" data-brand-github>GitHub</a></li>
+        <li><a href="https://github.com/fahdi/wpmcp" data-brand-github>Report an issue</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Project</h4>
+      <ul>
+        <li><a href="https://github.com/fahdi/wpmcp/blob/main/LICENSE">License, GPL-2.0</a></li>
+        <li><a href="https://developer.wordpress.org/">WordPress Abilities API</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span data-year>2026</span> <span data-brand-name>Dukandar</span>. Source available under GPL-2.0-or-later.</span>
+    <span data-brand-domain>getdukandar.com</span>
+  </div>
+</footer>
+
+<script src="assets/js/brand.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
