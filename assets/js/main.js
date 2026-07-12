@@ -8,15 +8,26 @@
   --------------------------------------------------------------------- */
   var navToggle = document.querySelector(".nav-toggle");
   var navLinks = document.querySelector(".nav-links");
+  var siteHeader = document.querySelector(".site-header");
   if (navToggle && navLinks) {
+    // The header's backdrop-filter creates a containing block for any
+    // fixed-position descendant (the mobile panel), which would otherwise
+    // collapse to the header's own box instead of the full viewport. The
+    // CSS :has() rule handles this in modern browsers; this class toggle
+    // is the fallback for browsers without :has() support.
+    var syncHeaderState = function (isOpen) {
+      if (siteHeader) siteHeader.classList.toggle("nav-is-open", isOpen);
+    };
     navToggle.addEventListener("click", function () {
       var isOpen = navLinks.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
+      syncHeaderState(isOpen);
     });
     navLinks.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () {
         navLinks.classList.remove("is-open");
         navToggle.setAttribute("aria-expanded", "false");
+        syncHeaderState(false);
       });
     });
   }
@@ -116,4 +127,26 @@
   --------------------------------------------------------------------- */
   var yearEl = document.querySelector("[data-year]");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* ---------------------------------------------------------------------
+     Scrollable <pre> hint: only show the trailing fade when a code block
+     genuinely has more content than fits, so it never appears on wide
+     viewports where the command already fits in full.
+  --------------------------------------------------------------------- */
+  var codeBlocks = document.querySelectorAll("pre");
+  var syncScrollHints = function () {
+    codeBlocks.forEach(function (el) {
+      el.classList.toggle("is-scrollable-hint", el.scrollWidth > el.clientWidth + 2);
+    });
+  };
+  if (codeBlocks.length) {
+    syncScrollHints();
+    window.addEventListener("resize", syncScrollHints);
+    codeBlocks.forEach(function (el) {
+      el.addEventListener("scroll", function () {
+        var atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
+        el.classList.toggle("is-scrollable-hint", el.scrollWidth > el.clientWidth + 2 && !atEnd);
+      });
+    });
+  }
 })();

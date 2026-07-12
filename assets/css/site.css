@@ -74,6 +74,19 @@
 
 @media (max-width: 760px) {
   .nav-toggle { display: inline-flex; }
+
+  /* backdrop-filter on .site-header creates a containing block for any
+     fixed-position descendant, which would otherwise collapse this panel
+     to the header's own (tiny) box instead of the full viewport below it.
+     Dropping the blur only at this breakpoint, while the mobile panel is
+     open, keeps .nav-links truly viewport-fixed and fully opaque. */
+  .site-header:has(.nav-links.is-open),
+  .site-header.nav-is-open {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-base);
+  }
+
   .nav-links {
     position: fixed;
     inset: 66px 0 0 0;
@@ -87,6 +100,7 @@
     pointer-events: none;
     transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
     border-bottom: 1px solid var(--hairline);
+    z-index: 60;
   }
   .nav-links.is-open {
     transform: translateY(0);

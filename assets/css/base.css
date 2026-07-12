@@ -3,7 +3,7 @@
    ========================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
@@ -214,6 +214,20 @@ pre {
   font-size: 13.5px;
   line-height: 1.7;
   color: var(--ink-100);
+  position: relative;
+}
+
+/* A soft fade on the trailing edge hints a long command scrolls further,
+   instead of letting it look simply cut off at the card's edge. Purely
+   decorative and non-interactive, so it can't block the real scroll. */
+pre.is-scrollable-hint::after {
+  content: "";
+  position: absolute;
+  top: 1px; right: 1px; bottom: 1px;
+  width: 28px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: linear-gradient(to right, transparent, var(--bg-void) 78%);
+  pointer-events: none;
 }
 
 code {
