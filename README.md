@@ -21,10 +21,12 @@ Then open the printed URL (for example `http://localhost:8080`). If you open `do
 ```
 index.html          landing page (shop-owner facing)
 docs.html           documentation shell (renders docs/*.md client-side, developer facing)
-assets/css/         brand.css, base.css, site.css, landing.css, docs.css
+assets/css/         fonts.css, brand.css, base.css, site.css, landing.css, docs.css, logo.css
 assets/js/          brand.js, main.js, markdown.js, docs-app.js
 docs/               Markdown content, owned by a separate process; do not edit here
 ```
+
+`fonts.css` self-hosts Fraunces (display serif) and Hanken Grotesk (UI sans) as base64-inlined woff2, subsetted to the glyphs this site actually uses, so there is still zero external network activity. `logo.css` animates the rollback mark (the brand tile in the header, footer, and hero): the ring draws on with `stroke-dashoffset` on load, the arrowhead pops in after, and hovering or focusing any mark triggers a quick counter-rotation. Fully inert under `prefers-reduced-motion: reduce`.
 
 ## Brand config, and how to swap it
 
@@ -37,7 +39,7 @@ To rebrand again:
 
 1. Edit `name`, `tagline`, `domain`, `github`, and `pluginSlug` in `assets/js/brand.js`.
 2. Adjust `--brand-primary` / `--brand-accent` in `assets/css/brand.css` if the palette changes too.
-3. Replace the inline `<svg>` logo mark in `index.html` and `docs.html` (there are two copies of the mark per page: header and footer) or swap it for an `<img>` pointing at a new asset in `assets/img/`.
+3. Replace the inline `<svg>` logo mark in `index.html` (header, hero, and footer, three copies) and `docs.html` (header and footer, two copies), or swap it for an `<img>` pointing at a new asset in `assets/img/`. Each mark carries `.logo-mark`/`.logo-ring`/`.logo-arrow` classes that `assets/css/logo.css` animates; keep those classes (or update the selectors) if the glyph shape changes.
 4. The literal string "wpmcp" still appears in a few places outside the brand slots (GitHub URLs, install commands, the docs page's mention of the underlying plugin). Those are intentional: they describe the real, current plugin identity and its GitHub repo path, not the marketing brand shown to shop owners; update them by hand if the repo itself is renamed.
 
 ## Docs rendering
