@@ -3,9 +3,88 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Fahad Murtaza">
+
+<!--
+  ANALYTICS SCAFFOLD (placeholder, inert by default).
+  Google Tag Manager + Consent Mode v2, mirroring the reference site. It is
+  COMMENTED OUT so this page stays fully self-contained and strict-CSP safe
+  with zero external network calls. To enable analytics:
+    1. Replace GTM-XXXXXXX below with your real GTM container id.
+    2. Uncomment BOTH the Consent Mode block and the GTM loader block.
+    3. Uncomment the matching <noscript> iframe just after <body>.
+  Consent defaults to denied in the EU/EEA/UK per Consent Mode v2.
+
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted',functionality_storage:'granted',personalization_storage:'granted',security_storage:'granted'});
+  gtag('consent','default',{region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+  gtag('set','ads_data_redaction',true);
+  gtag('set','url_passthrough',true);
+  </script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+-->
+
+<!-- SEO -->
 <title>Dukandar: let AI run your shop, never fear it breaking your store</title>
 <meta name="description" content="Dukandar lets an AI assistant build and manage your WordPress or WooCommerce store. Every change is saved before it happens, so anything the AI does can be undone with one click. Free and open, GPL-2.0.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='256' y2='256'%3E%3Cstop offset='0' stop-color='%232563EB'/%3E%3Cstop offset='1' stop-color='%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='256' height='256' rx='56' fill='url(%23g)'/%3E%3Cg stroke='%23fff' stroke-width='22' stroke-linecap='round' fill='none'%3E%3Cpath d='M151.2 70.5 A62 62 0 1 1 104.8 70.5'/%3E%3C/g%3E%3Cpath d='M80 70.5 L110 52 L110 89 Z' fill='%23fff'/%3E%3C/svg%3E">
+<meta name="keywords" content="AI WordPress plugin, WooCommerce AI assistant, MCP WordPress, undo AI changes WordPress, WordPress rollback plugin, safe AI store management, Model Context Protocol WordPress">
+<link rel="canonical" href="https://getdukandar.com/">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0c0f16">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getdukandar.com/">
+<meta property="og:title" content="Dukandar: let AI run your shop, never fear it breaking your store">
+<meta property="og:description" content="Dukandar gives an AI assistant the keys to your WordPress or WooCommerce store, and saves a copy of everything before it changes it. One click restores your store exactly as it was.">
+<meta property="og:image" content="https://getdukandar.com/og-image.png">
+<meta property="og:image:secure_url" content="https://getdukandar.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Dukandar, let AI run your shop and undo anything it breaks">
+<meta property="og:site_name" content="Dukandar">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dukandar: let AI run your shop, never fear it breaking your store">
+<meta name="twitter:description" content="An AI assistant for WordPress and WooCommerce with a one-click undo built into the core. Free and open, GPL-2.0.">
+<meta name="twitter:image" content="https://getdukandar.com/og-image.png">
+<meta name="twitter:image:alt" content="Dukandar saves a copy of every change before it happens, so anything the AI does can be undone">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Dukandar",
+  "url": "https://getdukandar.com/",
+  "description": "Dukandar is a WordPress and WooCommerce plugin that lets an AI assistant build and manage a store, saving a snapshot of every object before it changes it so any change can be undone with one click, per operation or per whole session.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "WordPress 6.9+",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "license": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+  "author": {
+    "@type": "Person",
+    "name": "Fahad Murtaza",
+    "url": "https://isupercoder.com",
+    "sameAs": ["https://isupercoder.com", "https://github.com/fahdi", "https://www.linkedin.com/in/fahadmurtaza/"]
+  }
+}
+</script>
+
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/brand.css">
 <link rel="stylesheet" href="assets/css/base.css">
@@ -45,7 +124,9 @@
       <a href="#how-it-works">How it works</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
+      <a href="dukandar-vs-other-wp-mcp-tools.html">Compare</a>
       <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
       <a class="btn btn-primary btn-sm" href="https://github.com/fahdi/wpmcp" data-brand-github>GitHub</a>
     </nav>
   </div>
@@ -427,15 +508,18 @@ composer install --no-dev</code></pre>
       <h4>Resources</h4>
       <ul>
         <li><a href="docs.html">Documentation</a></li>
+        <li><a href="dukandar-vs-other-wp-mcp-tools.html">Compare tools</a></li>
         <li><a href="https://github.com/fahdi/wpmcp" data-brand-github>GitHub</a></li>
         <li><a href="https://github.com/fahdi/wpmcp" data-brand-github>Report an issue</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Project</h4>
+      <h4>Company</h4>
       <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
         <li><a href="https://github.com/fahdi/wpmcp/blob/main/LICENSE">License, GPL-2.0</a></li>
-        <li><a href="https://developer.wordpress.org/">WordPress Abilities API</a></li>
       </ul>
     </div>
   </div>
