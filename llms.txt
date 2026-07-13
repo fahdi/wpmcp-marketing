@@ -1,0 +1,49 @@
+# License: GPL-2.0-or-later
+# License-URL: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+# Dukandar
+
+> Dukandar is a WordPress plugin, marketing the open-source project wpmcp, that lets an AI assistant (Claude, Cursor, or any MCP client) build and run a WordPress or WooCommerce store. It speaks the Model Context Protocol over a standard application-password connection. Every tool that writes to the database routes through one safety engine: snapshot before the change, apply, verify, and roll back with one click if anything goes wrong, per operation or per whole agent session. Free and open, GPL-2.0.
+
+## Get Started
+
+- [Home](https://getdukandar.com/): Product overview, the undo model, and the free plugin
+- [About](https://getdukandar.com/about.html): What Dukandar is, why the snapshot-first design exists, and who builds it
+- [Documentation](https://getdukandar.com/docs.html): Installation, connecting AI clients over MCP, the safety model, and the full tools reference
+- [Compare](https://getdukandar.com/dukandar-vs-other-wp-mcp-tools.html): Honest comparison against other WordPress and WooCommerce MCP tools
+
+## The Safety Model
+
+- Every mutating tool routes through a single orchestrator (`Safe_Mutation::run()`); no write path can bypass it.
+- Snapshot captures the full post row, all post meta, taxonomy terms, and comments before a change, or the prior value for options, users, comments, and WooCommerce orders.
+- A one-click restore reverts a single operation (`rollback-operation`) or an entire agent session (`rollback-session`), from the AI itself or a Restore button in wp-admin.
+- Free tier keeps the last 20 operations in history; unlimited history is a planned Pro feature.
+
+## What It Covers
+
+- Content and pages, media, site and store settings, users, and comments
+- WooCommerce products, orders, order status changes, and sales reports
+- Navigation menus, plugins and themes, a read-mostly database and filesystem surface
+- SEO metadata (title, description, focus keyword, canonical, robots) via Yoast SEO or Rank Math, undoable like any other write
+- Read-only performance and security scanners
+- A handful of deliberately risky paths (raw database writes, permanent file or package deletion) are off by default and honestly reported as not covered by the undo guarantee
+
+## Key Facts
+
+- Built on the open-source WordPress plugin `wpmcp`: https://github.com/fahdi/wpmcp
+- License: GPL-2.0-or-later, free forever for the safety, save, and restore engine
+- Requires WordPress 6.9+ and the WordPress Abilities API
+- Uses the Model Context Protocol (MCP); works with Claude, Cursor, and other compatible AI clients
+- No separate service or third party holding a copy of the store; runs as a single self-hosted WordPress plugin
+- Author: Fahad Murtaza (https://isupercoder.com, https://github.com/fahdi)
+
+## Not Yet Shipped
+
+- Elementor deep editing (today the plugin only reads whether a page is built with Elementor)
+- `preview-change`, a dry-run diff before a write applies
+- Unlimited history / full-depth session rollback (planned Pro tier, gating mechanism already in place)
+
+## Contact
+
+- Email: info@fahdmurtaza.com
+- GitHub: https://github.com/fahdi/wpmcp

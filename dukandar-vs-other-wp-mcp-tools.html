@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Fahad Murtaza">
+
+<!-- SEO -->
+<title>Dukandar vs other WordPress MCP tools: the undo and audit comparison</title>
+<meta name="description" content="An honest comparison of Dukandar against other WordPress and WooCommerce MCP tools. See which ones let an AI agent write to your store with a real, one-click undo and an audit trail, and which ones do not.">
+<meta name="keywords" content="Dukandar vs Automattic MCP, Dukandar vs Royal MCP, Dukandar vs Respira, WordPress MCP comparison, WooCommerce MCP comparison, safest AI WordPress plugin, MCP WordPress undo">
+<link rel="canonical" href="https://getdukandar.com/dukandar-vs-other-wp-mcp-tools.html">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0c0f16">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://getdukandar.com/dukandar-vs-other-wp-mcp-tools.html">
+<meta property="og:title" content="Dukandar vs other WordPress MCP tools">
+<meta property="og:description" content="Which WordPress and WooCommerce MCP tools let an AI agent write to your store with a real, one-click undo and an audit trail, and which ones do not.">
+<meta property="og:image" content="https://getdukandar.com/og-image.png">
+<meta property="og:image:secure_url" content="https://getdukandar.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Dukandar, let AI run your shop and undo anything it breaks">
+<meta property="og:site_name" content="Dukandar">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dukandar vs other WordPress MCP tools">
+<meta name="twitter:description" content="An honest look at undo and audit coverage across the WordPress and WooCommerce MCP tools available today.">
+<meta name="twitter:image" content="https://getdukandar.com/og-image.png">
+<meta name="twitter:image:alt" content="Dukandar comparison">
+
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/brand.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/logo.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="atmosphere" aria-hidden="true"><div class="grid-overlay"></div></div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand-mark logo-animated" href="index.html" aria-label="Dukandar home">
+      <svg class="logo-mark" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="hmarkC" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2563EB"/>
+            <stop offset="1" stop-color="#06B6D4"/>
+          </linearGradient>
+        </defs>
+        <rect width="256" height="256" rx="56" fill="url(#hmarkC)"/>
+        <g class="logo-ring" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none">
+          <path d="M151.2 70.5 A62 62 0 1 1 104.8 70.5"/>
+        </g>
+        <path class="logo-arrow" d="M80 70.5 L110 52 L110 89 Z" fill="#FFFFFF"/>
+      </svg>
+      <span data-brand-name>Dukandar</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#problem">Why</a>
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="dukandar-vs-other-wp-mcp-tools.html" aria-current="page">Compare</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
+      <a class="btn btn-primary btn-sm" href="https://github.com/fahdi/wpmcp" data-brand-github>GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="page-hero">
+    <span class="eyebrow">Comparison</span>
+    <h1>Dukandar vs the other WordPress MCP tools.</h1>
+    <p class="lede">A handful of tools now let an AI assistant connect to WordPress or WooCommerce over the Model Context Protocol and make changes directly. The question worth asking before you install any of them is not "what can it do", it is "what happens the moment it gets something wrong". This page compares Dukandar against the field on exactly that question, as plainly as we can put it.</p>
+    <p class="meta">Last reviewed July 2026 &middot; Judge us on the same page</p>
+  </div>
+
+  <div class="prose">
+    <h2>The field, briefly</h2>
+    <div class="contenders">
+      <article class="contender is-us">
+        <h3>Dukandar</h3>
+        <span class="c-tag">This project, built on wpmcp</span>
+        <p>A WordPress plugin using the official WordPress Abilities API. Every mutating tool routes through one safety engine that snapshots the target before it changes, so a single operation or a whole agent session can be restored with one click. Free and GPL-2.0.</p>
+      </article>
+      <article class="contender">
+        <h3>Automattic's WordPress MCP connector</h3>
+        <span class="c-tag">Official adapter / connector approach</span>
+        <p>An official, well-maintained way to expose WordPress content and actions to an MCP client, built on the same underlying WordPress Abilities API foundation Dukandar uses. It focuses on exposing the surface; it does not ship a snapshot-and-restore safety layer of its own around every write.</p>
+      </article>
+      <article class="contender">
+        <h3>Royal MCP</h3>
+        <span class="c-tag">Independent MCP server</span>
+        <p>An independent open-source WordPress MCP implementation. Useful as a reference for tool coverage, but it does not build a dedicated before-image snapshot and one-click rollback engine into its write path.</p>
+      </article>
+      <article class="contender">
+        <h3>Respira</h3>
+        <span class="c-tag">Local Node proxy</span>
+        <p>Runs as a separate local Node process that proxies MCP calls to WordPress, rather than living inside WordPress as a plugin. That extra moving part is its own source of risk: Respira's own changelog has documented a bug that applied changes to the wrong connected site.</p>
+      </article>
+    </div>
+    <p>We are not neutral here, obviously, this is our own comparison page. Where we are not certain of a competitor's current internals we say so rather than guess, and we welcome corrections; email <a href="mailto:info@fahdmurtaza.com">info@fahdmurtaza.com</a> if something above is out of date.</p>
+
+    <h2>The undo and audit moat</h2>
+    <p>This is the feature nobody else in this list pairs together: a snapshot taken automatically before every write, a one-click restore for a single change or an entire agent session, and a visible history of what an agent did and when. Not a marketing claim, a mechanism. In Dukandar, no tool that writes to the database can skip it, because every mutation is required to route through one orchestrator (<code>Safe_Mutation::run()</code>) that snapshots first, applies second, and can reverse the change on demand.</p>
+
+    <div class="cmp-table-wrap">
+      <table class="cmp-table">
+        <thead>
+          <tr>
+            <th style="width:30%">Capability</th>
+            <th class="is-dukandar">Dukandar<small>Built on wpmcp</small></th>
+            <th>Automattic connector</th>
+            <th>Royal MCP</th>
+            <th>Respira</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Runs as</th>
+            <td class="col-dukandar">Single WordPress plugin</td>
+            <td>WordPress-side connector</td>
+            <td>MCP server</td>
+            <td>Separate local Node process</td>
+          </tr>
+          <tr>
+            <th scope="row">Snapshot before every write</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes, enforced in code</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+          </tr>
+          <tr>
+            <th scope="row">One-click restore, single change</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes, <code>rollback-operation</code></span></td>
+            <td><span class="mark-no">No equivalent</span></td>
+            <td><span class="mark-no">No equivalent</span></td>
+            <td><span class="mark-no">No equivalent</span></td>
+          </tr>
+          <tr>
+            <th scope="row">One-click restore, whole agent session</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes, <code>rollback-session</code></span></td>
+            <td><span class="mark-no">No equivalent</span></td>
+            <td><span class="mark-no">No equivalent</span></td>
+            <td><span class="mark-no">No equivalent</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Operation history / audit trail</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes, last 20 free, unlimited on Pro</span></td>
+            <td><span class="mark-partial">Standard WP revisions only</span></td>
+            <td><span class="mark-partial">Varies by deployment</span></td>
+            <td><span class="mark-partial">Varies by deployment</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Content and page edits undoable</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes</span></td>
+            <td><span class="mark-partial">WP post revisions</span></td>
+            <td><span class="mark-partial">Depends on host setup</span></td>
+            <td><span class="mark-partial">Depends on host setup</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Media edits undoable</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes (metadata; see note)</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+          </tr>
+          <tr>
+            <th scope="row">User profile edits undoable</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+          </tr>
+          <tr>
+            <th scope="row">WooCommerce product edits undoable</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes, exact price and stock restore</span></td>
+            <td><span class="mark-no">No native WooCommerce layer</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+          </tr>
+          <tr>
+            <th scope="row">WooCommerce order status changes undoable</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes, HPOS- and CPT-safe</span></td>
+            <td><span class="mark-no">No native WooCommerce layer</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Navigation menu edits undoable</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+          </tr>
+          <tr>
+            <th scope="row">SEO metadata edits undoable</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes, Yoast SEO and Rank Math</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Elementor page building</th>
+            <td class="col-dukandar"><span class="mark-partial">Read-only today, deep editing planned</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+            <td><span class="mark-no">Not built in</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Runs inside WordPress, no extra process</th>
+            <td class="col-dukandar"><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes</span></td>
+            <td><span class="mark-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Yes</span></td>
+            <td><span class="mark-partial">Depends on hosting choice</span></td>
+            <td><span class="mark-no">No, local Node proxy required</span></td>
+          </tr>
+          <tr>
+            <th scope="row">License</th>
+            <td class="col-dukandar">GPL-2.0-or-later, free</td>
+            <td>GPL-2.0-or-later, free</td>
+            <td>Open source, check project</td>
+            <td>MIT wrapper, check project</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="meta" style="margin-top:14px">"Not built in" means the tool has no dedicated snapshot-and-restore mechanism for that domain as far as we can determine from its public documentation, not that it is a bad tool overall. Media undo restores the database record, title, alt text, caption, and description; it cannot restore image bytes already deleted from disk, and we say so plainly in <a href="docs.html">our own docs</a> rather than quietly leaving it out of this table.</p>
+
+    <h2>Choose Dukandar if</h2>
+    <ul class="bullets">
+      <li>You are letting an AI assistant write to a <strong>live</strong> WordPress or WooCommerce store, not a sandbox, and want a real undo path rather than a promise.</li>
+      <li>You want the AI's changes to content, media, users, comments, products, orders, menus, and SEO metadata to share the same one-click restore, instead of a patchwork of what happens to be reversible per plugin.</li>
+      <li>You want to see what an agent did in plain history, and prove it, rather than trusting it silently.</li>
+      <li>You would rather install one plugin than run a separate local process alongside your site.</li>
+      <li>You want the safety engine itself to be free and open source, not a paid add-on.</li>
+    </ul>
+
+    <h2>Choose something else if</h2>
+    <ul class="bullets">
+      <li>You only need read access, browsing and reporting on a site, where undo risk barely applies.</li>
+      <li>You are already deep in a specific ecosystem (for example, an existing Automattic/WordPress.com workflow) where its official connector is the natural default.</li>
+      <li>You need Elementor deep-editing tools today; Dukandar currently only reads whether a page uses Elementor, deep editing is on the roadmap, not shipped (see <a href="docs.html">docs</a>).</li>
+    </ul>
+
+    <h2>What we will not claim</h2>
+    <p>A few things worth stating plainly, in the spirit of not overselling our own product on our own comparison page:</p>
+    <ul class="bullets">
+      <li><strong>Not every write is undoable.</strong> Raw database row writes and permanent plugin/theme/file deletion are off by default, and where they run anyway they honestly report <code>recoverable: false</code> instead of pretending to be reversible.</li>
+      <li><strong>Free-tier history is capped at 20 operations.</strong> A very long agent session on the free tier can outrun that window before it finishes; unlimited history is a planned Pro feature, not something free advertises falsely.</li>
+      <li><strong>Elementor deep editing is not shipped yet.</strong> It is read-only detection today. We would rather list it as planned than let this page imply otherwise.</li>
+    </ul>
+
+    <div class="callout">
+      <p class="callout-label">The bottom line</p>
+      <p>Every tool on this page can make an AI assistant useful on a WordPress site. Only Dukandar makes every one of those changes, across content, media, users, WooCommerce, menus, and SEO, something you can undo with one click and see in a history log. That is the bet: recoverability is the trust feature, not a footnote.</p>
+    </div>
+
+    <hr>
+    <p>Want the technical detail behind the undo engine? Read <a href="docs.html">the documentation</a>, or see <a href="about.html">why we built it this way</a>.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="brand-mark logo-animated logo-static-in" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="fmarkC" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#2563EB"/>
+              <stop offset="1" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+          <rect width="256" height="256" rx="56" fill="url(#fmarkC)"/>
+          <g class="logo-ring" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none">
+            <path d="M151.2 70.5 A62 62 0 1 1 104.8 70.5"/>
+          </g>
+          <path class="logo-arrow" d="M80 70.5 L110 52 L110 89 Z" fill="#FFFFFF"/>
+        </svg>
+        <span data-brand-name>Dukandar</span>
+      </a>
+      <p>Let AI build and run your online shop, and never fear it breaking your store.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#how-it-works">How it works</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="docs.html">Documentation</a></li>
+        <li><a href="dukandar-vs-other-wp-mcp-tools.html" aria-current="page">Compare tools</a></li>
+        <li><a href="https://github.com/fahdi/wpmcp" data-brand-github>GitHub</a></li>
+        <li><a href="https://github.com/fahdi/wpmcp" data-brand-github>Report an issue</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="https://github.com/fahdi/wpmcp/blob/main/LICENSE">License, GPL-2.0</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span data-year>2026</span> <span data-brand-name>Dukandar</span>. Source available under GPL-2.0-or-later.</span>
+    <span data-brand-domain>getdukandar.com</span>
+  </div>
+</footer>
+
+<script src="assets/js/brand.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
