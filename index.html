@@ -208,6 +208,26 @@
     </div>
   </section>
 
+  <!-- ================= STATS + CLIENTS BAND ================= -->
+  <section class="hero-band" aria-label="Key numbers and compatible clients">
+    <div class="hero-stats reveal">
+      <div class="stat"><span class="stat-num">80+</span><span class="stat-label">MCP abilities</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">of writes snapshotted first</span></div>
+      <div class="stat"><span class="stat-num">1-click</span><span class="stat-label">rollback, per change or session</span></div>
+      <div class="stat"><span class="stat-num">GPL-2.0</span><span class="stat-label">free, self-hosted core</span></div>
+    </div>
+    <div class="clients reveal">
+      <span class="clients-label">Works with any MCP-compatible client</span>
+      <div class="clients-row">
+        <span class="client-chip">Claude Code</span>
+        <span class="client-chip">Claude Desktop</span>
+        <span class="client-chip">Cursor</span>
+        <span class="client-chip">VS Code</span>
+        <span class="client-chip">Any MCP client</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= THE PROBLEM ================= -->
   <section class="section" id="problem">
     <div class="problem">
@@ -385,32 +405,65 @@
   <section class="section" id="tools">
     <div class="section-head reveal">
       <span class="eyebrow">Under the hood</span>
-      <h2>For the technically curious: what the AI can actually touch.</h2>
-      <p>WP MCP registers every tool as an ability through the official WordPress Abilities API, and speaks the Model Context Protocol (MCP), so it works with Claude, Cursor, or any compatible AI client. It now covers 80+ abilities across the whole site, grouped below by area. If you just want the reassurance, you do not need to read it, it is here for anyone who likes to check under the hood.</p>
+      <h2>80+ real abilities, every one snapshot-wrapped.</h2>
+      <p>WP MCP registers every tool as an ability through the official WordPress Abilities API, and speaks the Model Context Protocol (MCP), so it works with Claude, Cursor, or any compatible AI client. The names below are the real tools the agent calls, not marketing labels. The <a href="docs.html">full reference</a> documents every one.</p>
     </div>
 
-    <div class="tools-table-wrap reveal">
-      <table class="tools-table">
-        <thead>
-          <tr><th>Area</th><th>Type</th><th>What it does</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Content</td><td><span class="pill pill-safe">safe change</span></td><td>Create, edit, organize, and delete posts, pages, and products, saved before every change and checked automatically</td></tr>
-          <tr><td>Media</td><td><span class="pill pill-safe">safe change</span></td><td>Read and update photo and file details; pull images from a URL straight into your library</td></tr>
-          <tr><td>Site &amp; store settings</td><td><span class="pill pill-safe">safe change</span></td><td>Read and update site settings, applying what works even if part of a batch fails</td></tr>
-          <tr><td>Users</td><td><span class="pill pill-safe">safe change</span></td><td>List and update customer/staff profiles; never touches passwords or admin accounts</td></tr>
-          <tr><td>Comments</td><td><span class="pill pill-safe">safe change</span></td><td>Approve, edit, or moderate comments, every change saved before it happens</td></tr>
-          <tr><td>WooCommerce products</td><td><span class="pill pill-safe">safe change</span></td><td>Create products, update price and stock, browse categories, all undoable with one click</td></tr>
-          <tr><td>WooCommerce orders</td><td><span class="pill pill-safe">safe change</span></td><td>Review orders, update order status, add notes, pull sales reports, status changes are one-click undoable</td></tr>
-          <tr><td>Navigation menus</td><td><span class="pill pill-safe">safe change</span></td><td>Build and rearrange menus, assign them to theme locations, safely reversible</td></tr>
-          <tr><td>Plugins &amp; themes</td><td><span class="pill pill-write">write</span></td><td>Install, activate, and update plugins and themes; risky file changes are off by default</td></tr>
-          <tr><td>Database</td><td><span class="pill pill-read">read (mostly)</span></td><td>Inspect tables and run read-only queries; raw writes are off by default and admin-only</td></tr>
-          <tr><td>Filesystem</td><td><span class="pill pill-safe">safe change</span></td><td>Read, search, and edit files inside your WordPress install; every write is backed up first and off by default</td></tr>
-          <tr><td>Performance analyzer</td><td><span class="pill pill-read">read</span></td><td>Scans your server, database, and pages for slowdowns and returns a scored, ranked report</td></tr>
-          <tr><td>Security scanner</td><td><span class="pill pill-read">read</span></td><td>Checks for malware, core file tampering, weak configuration, and outdated software, with a graded report</td></tr>
-          <tr><td>Safety &amp; history</td><td><span class="pill pill-safe">undo</span></td><td>List recent AI changes and undo one change or a whole session, back to where it started</td></tr>
-        </tbody>
-      </table>
+    <div class="cap-grid">
+      <article class="cap-card reveal">
+        <p class="cap-kicker">01 / Safety &amp; history <span class="pill pill-safe">undo</span></p>
+        <h3>Undo is the architecture</h3>
+        <p>Every mutating tool routes through one snapshot-first engine; no write path can bypass it. Restore a single change, or an entire agent session, from the AI or from wp-admin.</p>
+        <div class="cap-chips"><code>rollback-operation</code><code>rollback-session</code><code>list-operations</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">02 / Content &amp; pages <span class="pill pill-safe">safe change</span></p>
+        <h3>Posts, pages, and blocks</h3>
+        <p>Create, edit, organize, and delete posts and pages, snapshotted before every change and checked automatically after it.</p>
+        <div class="cap-chips"><code>create-post</code><code>update-post</code><code>list-post-types</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">03 / WooCommerce <span class="pill pill-safe">safe change</span></p>
+        <h3>Products, orders, reports</h3>
+        <p>Create products, update price and stock, change order status, add notes, and pull sales reports, every store write as undoable as a page edit.</p>
+        <div class="cap-chips"><code>create-product</code><code>update-order-status</code><code>get-sales-report</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">04 / Media <span class="pill pill-safe">safe change</span></p>
+        <h3>Library, alt text, imports</h3>
+        <p>Read and update image and file details, or pull an image from a URL straight into the library. Deletes that touch disk bytes are off by default.</p>
+        <div class="cap-chips"><code>get-media</code><code>update-media</code><code>delete-media</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">05 / Menus &amp; structure <span class="pill pill-safe">safe change</span></p>
+        <h3>Navigation, safely rearranged</h3>
+        <p>Build menus, add and move items, and assign menus to theme locations, all reversible like everything else.</p>
+        <div class="cap-chips"><code>create-menu</code><code>add-menu-item</code><code>assign-menu-to-location</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">06 / Users &amp; comments <span class="pill pill-safe">safe change</span></p>
+        <h3>People and moderation</h3>
+        <p>List and update user profiles, approve and moderate comments. Passwords and admin accounts are never touched.</p>
+        <div class="cap-chips"><code>update-user</code><code>moderate-comment</code><code>list-comments</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">07 / Plugins &amp; themes <span class="pill pill-write">write</span></p>
+        <h3>Install, activate, update</h3>
+        <p>Manage plugins and themes from the agent. Permanent deletes are a separate, off-by-default capability, honestly outside the undo guarantee.</p>
+        <div class="cap-chips"><code>install-plugin</code><code>activate-plugin</code><code>update-theme</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">08 / Database &amp; files <span class="pill pill-read">guard-railed</span></p>
+        <h3>Read-mostly, backed up</h3>
+        <p>Inspect tables and run read-only queries; raw writes are off by default and admin-only. File edits are backed up first, and also off by default.</p>
+        <div class="cap-chips"><code>query</code><code>read-file</code><code>edit-file</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">09 / Scanners <span class="pill pill-read">read</span></p>
+        <h3>Performance and security</h3>
+        <p>Scored, ranked reports on slowdowns, malware, tampered core files, weak configuration, and outdated software. Read-only by design.</p>
+        <div class="cap-chips"><code>analyze-performance</code><code>scan-security</code></div>
+      </article>
     </div>
   </section>
 

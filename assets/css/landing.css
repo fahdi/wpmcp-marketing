@@ -683,3 +683,113 @@ table.tools-table {
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---- Stats + clients band, directly under the hero ---- */
+.hero-band {
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--bg-raised);
+  padding: 34px clamp(20px, 6vw, 72px) 30px;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.stat { display: flex; flex-direction: column; gap: 6px; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink-000);
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+.clients {
+  max-width: 1080px;
+  margin: 26px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+.clients-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+.clients-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.client-chip {
+  font-size: 0.85rem;
+  color: var(--ink-100);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  padding: 7px 14px;
+  background: var(--bg-panel);
+}
+@media (max-width: 760px) {
+  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---- Capability cards, replacing the flat tools table ---- */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.cap-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cap-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-accent-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cap-card h3 { font-size: 1.05rem; color: var(--ink-000); }
+.cap-card > p:not(.cap-kicker) {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-300);
+  flex: 1;
+}
+.cap-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 4px; }
+.cap-chips code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-100);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 6px;
+  padding: 4px 8px;
+  background: var(--bg-panel-2);
+  white-space: nowrap;
+}
+@media (max-width: 980px) {
+  .cap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .cap-grid { grid-template-columns: 1fr; }
+}
