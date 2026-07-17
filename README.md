@@ -1,8 +1,8 @@
-# Dukandar marketing site
+# WP MCP marketing site
 
-A self-contained static site for Dukandar: an AI assistant for WordPress and WooCommerce stores, built on the open-source `wpmcp` plugin, with a save-before-every-change engine and one-click restore baked into the core. No build step, no external CDNs, no network calls; everything needed to render the site ships in this folder.
+A self-contained static site for WP MCP (wpmcp-pro.com): a WordPress plugin exposing an MCP server via the official Abilities API, with a snapshot-before-every-write engine and one-click restore baked into the core. No build step, no external CDNs, no network calls; everything needed to render the site ships in this folder.
 
-Note on naming: "Dukandar" (meaning shopkeeper) is the marketing brand shown to shop owners on the landing page. The plugin itself still ships under the `wpmcp` slug and GitHub repo, that lower-level identity is used in the docs section and in install commands, since that is what developers and agencies actually clone and run.
+Note on naming: "WP MCP" is the human-facing wordmark; the plugin ships under the `wpmcp` slug and GitHub repo (github.com/wpmcp/wpmcp). Same identity, just spaced for readability.
 
 ## Preview locally
 
@@ -32,7 +32,7 @@ docs/               Markdown content, owned by a separate process; do not edit h
 
 Everything brand-specific lives in two files:
 
-- `assets/js/brand.js`, the `window.DUKANDAR_BRAND` object: product name, tagline, domain, GitHub URL, license, the underlying plugin slug, and the color hexes. Any element with `data-brand-name`, `data-brand-domain`, `data-brand-github`, or `data-brand-plugin-slug` in the HTML is populated from this object on load, so page copy does not need to be hand-edited when the name changes. A `window.WPMCP_BRAND` alias points at the same object for back-compat.
+- `assets/js/brand.js`, the `window.WPMCP_BRAND` object: product name, tagline, domain, GitHub URL, license, the underlying plugin slug, and the color hexes. Any element with `data-brand-name`, `data-brand-domain`, `data-brand-github`, or `data-brand-plugin-slug` in the HTML is populated from this object on load, so page copy does not need to be hand-edited when the name changes. A `window.DUKANDAR_BRAND` alias points at the same object for back-compat.
 - `assets/css/brand.css`, the `:root` custom properties: `--brand-primary`, `--brand-accent`, and the rest of the palette/type tokens. Every other stylesheet reads these variables instead of hardcoding colors or fonts.
 
 To rebrand again:

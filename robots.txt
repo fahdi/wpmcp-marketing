@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://getdukandar.com/sitemap.xml
+Sitemap: https://wpmcp-pro.com/sitemap.xml

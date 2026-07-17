@@ -178,7 +178,7 @@
     buildSidebar(docs, doc.file);
     buildToc(rendered.toc);
     buildPager(docs, index);
-    document.title = doc.title + ": Dukandar docs";
+    document.title = doc.title + ": WP MCP docs";
 
     // Jump to in-page anchor if the hash included one (#slug or plain #slug),
     // otherwise scroll the article into view from the top.

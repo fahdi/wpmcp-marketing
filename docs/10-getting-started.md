@@ -21,7 +21,7 @@ wpmcp is not yet listed on the wp.org plugin directory (this is planned). For no
 Clone the plugin directly into your `wp-content/plugins` directory and install its dependencies:
 
 ```bash
-git clone https://github.com/fahdi/wpmcp.git wp-content/plugins/wpmcp
+git clone https://github.com/wpmcp/wpmcp.git wp-content/plugins/wpmcp
 cd wp-content/plugins/wpmcp
 composer install --no-dev
 ```

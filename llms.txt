@@ -1,16 +1,16 @@
 # License: GPL-2.0-or-later
 # License-URL: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
-# Dukandar
+# WP MCP
 
-> Dukandar is a WordPress plugin, marketing the open-source project wpmcp, that lets an AI assistant (Claude, Cursor, or any MCP client) build and run a WordPress or WooCommerce store. It speaks the Model Context Protocol over a standard application-password connection. Every tool that writes to the database routes through one safety engine: snapshot before the change, apply, verify, and roll back with one click if anything goes wrong, per operation or per whole agent session. Free and open, GPL-2.0.
+> WP MCP is a WordPress plugin that exposes an MCP server via the official WordPress Abilities API, letting an AI agent (Claude, Cursor, or any MCP client) build and run a WordPress or WooCommerce site. It speaks the Model Context Protocol over a standard application-password connection. Every tool that writes to the database routes through one safety engine: snapshot before the change, apply, verify, and roll back with one click if anything goes wrong, per operation or per whole agent session. Free and open, GPL-2.0.
 
 ## Get Started
 
-- [Home](https://getdukandar.com/): Product overview, the undo model, and the free plugin
-- [About](https://getdukandar.com/about.html): What Dukandar is, why the snapshot-first design exists, and who builds it
-- [Documentation](https://getdukandar.com/docs.html): Installation, connecting AI clients over MCP, the safety model, and the full tools reference
-- [Compare](https://getdukandar.com/dukandar-vs-other-wp-mcp-tools.html): Honest comparison against other WordPress and WooCommerce MCP tools
+- [Home](https://wpmcp-pro.com/): Product overview, the undo model, and the free plugin
+- [About](https://wpmcp-pro.com/about.html): What WP MCP is, why the snapshot-first design exists, and who builds it
+- [Documentation](https://wpmcp-pro.com/docs.html): Installation, connecting AI clients over MCP, the safety model, and the full tools reference
+- [Compare](https://wpmcp-pro.com/wp-mcp-vs-other-wordpress-mcp-tools.html): Honest comparison against other WordPress and WooCommerce MCP tools
 
 ## The Safety Model
 
@@ -30,11 +30,11 @@
 
 ## Key Facts
 
-- Built on the open-source WordPress plugin `wpmcp`: https://github.com/fahdi/wpmcp
-- License: GPL-2.0-or-later, free forever for the safety, save, and restore engine
+- The plugin ships under the `wpmcp` slug: https://github.com/wpmcp/wpmcp
+- License: GPL-2.0-or-later, free forever for the safety, snapshot, and restore engine
 - Requires WordPress 6.9+ and the WordPress Abilities API
 - Uses the Model Context Protocol (MCP); works with Claude, Cursor, and other compatible AI clients
-- No separate service or third party holding a copy of the store; runs as a single self-hosted WordPress plugin
+- No separate service or third party holding a copy of the site; runs as a single self-hosted WordPress plugin
 - Author: Fahad Murtaza (https://isupercoder.com, https://github.com/fahdi)
 
 ## Not Yet Shipped
@@ -46,4 +46,4 @@
 ## Contact
 
 - Email: info@fahdmurtaza.com
-- GitHub: https://github.com/fahdi/wpmcp
+- GitHub: https://github.com/wpmcp/wpmcp
