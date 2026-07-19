@@ -4,6 +4,34 @@
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------------------------------------------------------------------
+     Theme switcher. The pre-paint <head> script already stamped
+     data-theme from localStorage; this button flips and persists it.
+  --------------------------------------------------------------------- */
+  var themeToggle = document.querySelector(".theme-toggle");
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  var syncThemeUi = function (theme) {
+    if (themeToggle) {
+      themeToggle.setAttribute(
+        "aria-label",
+        theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
+      );
+    }
+    if (themeMeta) {
+      themeMeta.setAttribute("content", theme === "dark" ? "#0c0f16" : "#fbfbfd");
+    }
+  };
+  syncThemeUi(document.documentElement.getAttribute("data-theme") || "light");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var next =
+        document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("wpmcp-theme", next); } catch (e) {}
+      syncThemeUi(next);
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Mobile nav toggle
   --------------------------------------------------------------------- */
   var navToggle = document.querySelector(".nav-toggle");
