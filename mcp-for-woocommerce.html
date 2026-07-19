@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Fahad Murtaza">
+
+<!-- SEO -->
+<title>MCP for WooCommerce: let AI agents run your store, with an undo button</title>
+<meta name="description" content="WP MCP is an MCP server for WooCommerce and WordPress. AI agents create products, update prices and stock, and manage orders on your live store, while every change is snapshotted first and undoable with one click.">
+<meta name="keywords" content="WooCommerce MCP, MCP for WooCommerce, AI WooCommerce store, WooCommerce AI agent, undo AI changes WooCommerce, WooCommerce MCP server, Model Context Protocol WooCommerce, safe AI store management">
+<link rel="canonical" href="https://wpmcp-pro.com/mcp-for-woocommerce.html">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0c0f16">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wpmcp-pro.com/mcp-for-woocommerce.html">
+<meta property="og:title" content="MCP for WooCommerce: let AI agents run your store, with an undo button">
+<meta property="og:description" content="AI agents create products, update prices and stock, and manage orders on your live WooCommerce store. Every change is snapshotted first, so one click puts it back.">
+<meta property="og:image" content="https://wpmcp-pro.com/og-image.png">
+<meta property="og:image:secure_url" content="https://wpmcp-pro.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="WP MCP snapshots every WooCommerce change before it happens, so anything the AI does can be undone">
+<meta property="og:site_name" content="WP MCP">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MCP for WooCommerce: let AI agents run your store, with an undo button">
+<meta name="twitter:description" content="An MCP server for WooCommerce with snapshot-before-every-write and one-click restore. On a live store, a mistake costs revenue. This is the undo button.">
+<meta name="twitter:image" content="https://wpmcp-pro.com/og-image.png">
+<meta name="twitter:image:alt" content="WP MCP, the safe MCP layer for WooCommerce stores">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "WP MCP",
+  "url": "https://wpmcp-pro.com/mcp-for-woocommerce.html",
+  "description": "WP MCP is a WordPress plugin that exposes an MCP server via the official Abilities API, letting AI agents run a live WooCommerce store: create and update products, change prices and stock, manage order status, and pull sales reports. Every write is snapshotted first, so any change can be undone with one click, per operation or per whole session.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "WordPress 6.9+",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "license": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+  "author": {
+    "@type": "Person",
+    "name": "Fahad Murtaza",
+    "url": "https://isupercoder.com",
+    "sameAs": ["https://isupercoder.com", "https://github.com/fahdi", "https://www.linkedin.com/in/fahadmurtaza/"]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/brand.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/landing.css">
+<link rel="stylesheet" href="assets/css/logo.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="atmosphere" aria-hidden="true"><div class="grid-overlay"></div></div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand-mark logo-animated" href="index.html" aria-label="WP MCP home">
+      <svg class="logo-mark" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="hmarkW" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2563EB"/>
+            <stop offset="1" stop-color="#06B6D4"/>
+          </linearGradient>
+        </defs>
+        <rect width="256" height="256" rx="56" fill="url(#hmarkW)"/>
+        <g class="logo-ring" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none">
+          <path d="M151.2 70.5 A62 62 0 1 1 104.8 70.5"/>
+        </g>
+        <path class="logo-arrow" d="M80 70.5 L110 52 L110 89 Z" fill="#FFFFFF"/>
+      </svg>
+      <span data-brand-name>WP MCP</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#problem">Why</a>
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="wp-mcp-vs-other-wordpress-mcp-tools.html">Compare</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
+      <a class="btn btn-primary btn-sm" href="https://github.com/wpmcp/wpmcp" data-brand-github>GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">MCP for WooCommerce</span>
+      <h1>Let AI run your live store.<br class="hide-mobile"> Keep the <span class="text-gradient">undo button</span>.</h1>
+      <p class="lede">WP MCP is an MCP server that runs inside WordPress and speaks WooCommerce natively. An AI agent like Claude or Cursor can create products, update prices and stock, review orders, change order status, and pull sales reports on your live store. Before every one of those writes, WP MCP saves a snapshot. If the agent gets a price wrong or flips the wrong order, one click puts it back exactly as it was.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/wpmcp/wpmcp" data-brand-github>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.11.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          Get the free plugin
+        </a>
+        <a class="btn btn-ghost" href="docs.html">Read the docs</a>
+      </div>
+      <div class="hero-meta">
+        <span><i class="dot" aria-hidden="true"></i> Every store write snapshotted first</span>
+        <span>Works with any MCP client</span>
+        <span>Free and open, GPL-2.0</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="Store activity log showing a one-click restore of a price change">
+      <div class="console">
+        <div class="console-bar">
+          <span class="cdot"></span><span class="cdot"></span><span class="cdot"></span>
+          <span class="ctitle">Your store &rsaquo; WP MCP &rsaquo; Recent changes</span>
+        </div>
+        <div class="console-body">
+          <div class="op-row">
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Created product &middot; "Linen Summer Shirt"</span>
+            <span class="op-time">3m ago</span>
+            <button class="op-undo" disabled>New</button>
+          </div>
+          <div class="op-row" data-console-row data-state>
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Updated price on 14 products</span>
+            <span class="op-time">9m ago</span>
+            <button class="op-undo" data-console-undo>Restore</button>
+          </div>
+          <div class="op-row">
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Order #4183 marked completed, note added</span>
+            <span class="op-time">1h ago</span>
+            <button class="op-undo">Restore</button>
+          </div>
+
+          <div class="console-divider"></div>
+
+          <div class="console-diff">
+            <span class="ctx">--- Linen Summer Shirt, saved copy</span>
+            <span class="add is-hidden">+ price: $49.00 &middot; stock: 120</span>
+            <span class="del">- price: $49.00 &middot; stock: 120</span>
+            <span class="ctx">+ price: $4.90 &middot; stock: 120</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY SAFETY MATTERS HERE ================= -->
+  <section class="section" id="why-safety">
+    <div class="problem">
+      <div class="problem-scenario reveal">
+        <div class="scenario-frame">
+          <div class="scenario-log">
+            <p class="line"><span class="tag">ai&gt;</span> updating prices for the summer sale...</p>
+            <p class="line"><span class="tag">ai&gt;</span> adjusting stock on 14 products...</p>
+            <p class="line"><span class="tag">ai&gt;</span> marking fulfilled orders as completed...</p>
+            <p class="line bad"><span class="tag">error&gt;</span> the sale price went on the wrong 14 products</p>
+            <p class="crack">Customers are checking out right now, at the wrong price. Every minute this stays live costs real money, and there is no undo button.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-points">
+        <span class="eyebrow reveal">Why safety matters on a store</span>
+        <div class="problem-point reveal">
+          <span class="num">01</span>
+          <div>
+            <h3>A store mistake costs revenue, not just pride.</h3>
+            <p>A broken blog post is embarrassing. A wrong price, a zeroed stock count, or an order flipped to the wrong status costs actual money while it stands, and customers see it before you do.</p>
+          </div>
+        </div>
+        <div class="problem-point reveal">
+          <span class="num">02</span>
+          <div>
+            <h3>First-party MCP endpoints are arriving across the ecosystem. None of them ship an undo.</h3>
+            <p>Giving an agent raw create, update, and delete access to a live store is easy. What is hard, and what matters at the moment something goes wrong, is being able to reverse it. WP MCP is the safe layer: the same store operations, wrapped in snapshot-first and one-click restore.</p>
+          </div>
+        </div>
+        <div class="problem-point reveal">
+          <span class="num">03</span>
+          <div>
+            <h3>Undo one change, or the whole session.</h3>
+            <p>Every product edit, price change, and order-status update lands in your dashboard with a Restore button next to it. If an agent's entire afternoon went sideways, roll the whole session back in one click.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAPABILITIES ================= -->
+  <section class="section tint" id="capabilities">
+    <div class="section-head reveal">
+      <span class="eyebrow">What the agent can actually do</span>
+      <h2>Real store operations, every write snapshot-wrapped.</h2>
+      <p>These are the real ability names the agent calls, registered through the official WordPress Abilities API, not marketing labels. Every mutating one routes through the same snapshot-first engine as the rest of WP MCP. The <a href="docs.html">full reference</a> documents each one.</p>
+    </div>
+
+    <div class="cap-grid">
+      <article class="cap-card reveal">
+        <p class="cap-kicker">01 / Products <span class="pill pill-safe">safe change</span></p>
+        <h3>Create and update products</h3>
+        <p>Add new products, rewrite descriptions, change prices, and adjust stock levels. Each product write is snapshotted before it happens and undoable after.</p>
+        <div class="cap-chips"><code>create-product</code><code>update-product</code><code>list-products</code><code>get-product</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">02 / Orders <span class="pill pill-safe">safe change</span></p>
+        <h3>Review orders, change status, add notes</h3>
+        <p>List and inspect orders, move them through statuses, and attach order notes so the paper trail stays intact. Status changes are as undoable as a page edit.</p>
+        <div class="cap-chips"><code>list-orders</code><code>get-order</code><code>update-order-status</code><code>add-order-note</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">03 / Reports &amp; catalog <span class="pill pill-read">read</span></p>
+        <h3>Sales reports and categories</h3>
+        <p>Pull sales reports and browse product categories so the agent can answer "how did last week go?" before touching anything. Read-only by design.</p>
+        <div class="cap-chips"><code>get-sales-report</code><code>list-product-categories</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">04 / Safety &amp; history <span class="pill pill-safe">undo</span></p>
+        <h3>The undo, built into the write path</h3>
+        <p>Restore a single change or unwind an entire agent session, from the AI itself or from wp-admin. No store write can bypass the snapshot engine.</p>
+        <div class="cap-chips"><code>rollback-operation</code><code>rollback-session</code><code>list-operations</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">05 / The rest of the site <span class="pill pill-safe">safe change</span></p>
+        <h3>Your store is more than the catalog</h3>
+        <p>The same agent also manages pages, media, menus, comments, users, and settings through the full WP MCP surface, over eighty abilities, all behind the same safety net.</p>
+        <div class="cap-chips"><code>create-post</code><code>update-post</code><code>update-media</code><code>create-menu</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">06 / Guard rails <span class="pill pill-read">guard-railed</span></p>
+        <h3>Risky paths stay off by default</h3>
+        <p>Permanent product deletion exists but is deliberately gated, and raw database writes are off by default and admin-only. Where something is not covered by the undo guarantee, the docs say so plainly.</p>
+        <div class="cap-chips"><code>delete-product</code><code>query</code></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="section">
+    <div class="final-cta reveal">
+      <span class="eyebrow">Get started</span>
+      <h2>Let the AI run the store. Keep the receipts.</h2>
+      <p>Install the plugin, connect your AI client over MCP, and every store change from that point on arrives with a Restore button next to it.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/wpmcp/wpmcp" data-brand-github>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.11.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          WP MCP on GitHub
+        </a>
+        <a class="btn btn-ghost" href="docs.html">Read the docs</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="brand-mark logo-animated logo-static-in" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="fmarkW" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#2563EB"/>
+              <stop offset="1" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+          <rect width="256" height="256" rx="56" fill="url(#fmarkW)"/>
+          <g class="logo-ring" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none">
+            <path d="M151.2 70.5 A62 62 0 1 1 104.8 70.5"/>
+          </g>
+          <path class="logo-arrow" d="M80 70.5 L110 52 L110 89 Z" fill="#FFFFFF"/>
+        </svg>
+        <span data-brand-name>WP MCP</span>
+      </a>
+      <p>The AI agent that builds your WordPress site and physically can't wreck it.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#how-it-works">How it works</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="docs.html">Documentation</a></li>
+        <li><a href="mcp-for-woocommerce.html" aria-current="page">For WooCommerce</a></li>
+        <li><a href="mcp-for-seo.html">For SEO</a></li>
+        <li><a href="wp-mcp-vs-other-wordpress-mcp-tools.html">Compare tools</a></li>
+        <li><a href="https://github.com/wpmcp/wpmcp" data-brand-github>GitHub</a></li>
+        <li><a href="https://github.com/wpmcp/wpmcp" data-brand-github>Report an issue</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="https://github.com/wpmcp/wpmcp/blob/main/LICENSE">License, GPL-2.0</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span data-year>2026</span> <span data-brand-name>WP MCP</span>. Source available under GPL-2.0-or-later.</span>
+    <span data-brand-domain>wpmcp-pro.com</span>
+  </div>
+</footer>
+
+<script src="assets/js/brand.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

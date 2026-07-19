@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Fahad Murtaza">
+
+<!-- SEO -->
+<title>MCP for SEO: let AI agents do site-wide SEO work, every change undoable</title>
+<meta name="description" content="WP MCP lets AI agents read and write SEO metadata site-wide through Yoast SEO or Rank Math: titles, descriptions, focus keywords, canonicals, and robots flags. Every change is snapshotted first, and a whole bulk session rolls back in one click.">
+<meta name="keywords" content="SEO MCP, MCP for SEO, AI SEO WordPress, Yoast MCP, Rank Math MCP, bulk SEO metadata AI, undo SEO changes, internal linking AI, WordPress SEO agent">
+<link rel="canonical" href="https://wpmcp-pro.com/mcp-for-seo.html">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0c0f16">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wpmcp-pro.com/mcp-for-seo.html">
+<meta property="og:title" content="MCP for SEO: let AI agents do site-wide SEO work, every change undoable">
+<meta property="og:description" content="AI agents rewrite meta titles, descriptions, focus keywords, canonicals, and robots flags through Yoast or Rank Math. Every change snapshotted first, bulk sessions rollback-able in one click.">
+<meta property="og:image" content="https://wpmcp-pro.com/og-image.png">
+<meta property="og:image:secure_url" content="https://wpmcp-pro.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="WP MCP snapshots every SEO metadata change before it happens, so a bulk edit can be undone in one click">
+<meta property="og:site_name" content="WP MCP">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MCP for SEO: let AI agents do site-wide SEO work, every change undoable">
+<meta name="twitter:description" content="SEO metadata read and write over MCP, via Yoast SEO or Rank Math, with snapshot-before-every-write and one-click session rollback.">
+<meta name="twitter:image" content="https://wpmcp-pro.com/og-image.png">
+<meta name="twitter:image:alt" content="WP MCP, the safe MCP layer for site-wide SEO work">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "WP MCP",
+  "url": "https://wpmcp-pro.com/mcp-for-seo.html",
+  "description": "WP MCP is a WordPress plugin that exposes an MCP server via the official Abilities API, letting AI agents do site-wide SEO work: read and write meta titles, descriptions, focus keywords, canonicals, and robots flags through Yoast SEO or Rank Math, map internal links, and find orphan posts. Every write is snapshotted first, so a bulk metadata session can be rolled back in one click.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "WordPress 6.9+",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "license": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+  "author": {
+    "@type": "Person",
+    "name": "Fahad Murtaza",
+    "url": "https://isupercoder.com",
+    "sameAs": ["https://isupercoder.com", "https://github.com/fahdi", "https://www.linkedin.com/in/fahadmurtaza/"]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/brand.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/landing.css">
+<link rel="stylesheet" href="assets/css/logo.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="atmosphere" aria-hidden="true"><div class="grid-overlay"></div></div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand-mark logo-animated" href="index.html" aria-label="WP MCP home">
+      <svg class="logo-mark" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="hmarkS" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2563EB"/>
+            <stop offset="1" stop-color="#06B6D4"/>
+          </linearGradient>
+        </defs>
+        <rect width="256" height="256" rx="56" fill="url(#hmarkS)"/>
+        <g class="logo-ring" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none">
+          <path d="M151.2 70.5 A62 62 0 1 1 104.8 70.5"/>
+        </g>
+        <path class="logo-arrow" d="M80 70.5 L110 52 L110 89 Z" fill="#FFFFFF"/>
+      </svg>
+      <span data-brand-name>WP MCP</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#problem">Why</a>
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="wp-mcp-vs-other-wordpress-mcp-tools.html">Compare</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
+      <a class="btn btn-primary btn-sm" href="https://github.com/wpmcp/wpmcp" data-brand-github>GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">MCP for SEO</span>
+      <h1>Bulk SEO edits across the whole site.<br class="hide-mobile"> Every one of them <span class="text-gradient">undoable</span>.</h1>
+      <p class="lede">WP MCP lets an AI agent do the SEO work nobody enjoys: rewriting meta titles and descriptions, setting focus keywords, fixing canonicals, and flipping noindex and nofollow flags, across hundreds of posts, through Yoast SEO or Rank Math. Each write is snapshotted before it lands. If a bulk rewrite goes wrong on post two hundred, you roll the whole session back in one click instead of unpicking it by hand.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/wpmcp/wpmcp" data-brand-github>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.11.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          Get the free plugin
+        </a>
+        <a class="btn btn-ghost" href="docs.html">Read the docs</a>
+      </div>
+      <div class="hero-meta">
+        <span><i class="dot" aria-hidden="true"></i> Works with Yoast SEO and Rank Math</span>
+        <span>One-click session rollback</span>
+        <span>Free and open, GPL-2.0</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="SEO activity log showing a one-click restore of a metadata change">
+      <div class="console">
+        <div class="console-bar">
+          <span class="cdot"></span><span class="cdot"></span><span class="cdot"></span>
+          <span class="ctitle">Your site &rsaquo; WP MCP &rsaquo; Recent changes</span>
+        </div>
+        <div class="console-body">
+          <div class="op-row">
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Rewrote meta descriptions on 38 posts</span>
+            <span class="op-time">4m ago</span>
+            <button class="op-undo" disabled>New</button>
+          </div>
+          <div class="op-row" data-console-row data-state>
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Updated meta title &middot; "Pricing"</span>
+            <span class="op-time">12m ago</span>
+            <button class="op-undo" data-console-undo>Restore</button>
+          </div>
+          <div class="op-row">
+            <span class="op-status" aria-hidden="true"></span>
+            <span class="op-name">Set canonical on 6 archive pages</span>
+            <span class="op-time">1h ago</span>
+            <button class="op-undo">Restore</button>
+          </div>
+
+          <div class="console-divider"></div>
+
+          <div class="console-diff">
+            <span class="ctx">--- Pricing, saved SEO meta</span>
+            <span class="add is-hidden">+ title: Pricing | Plans that scale with you</span>
+            <span class="del">- title: Pricing | Plans that scale with you</span>
+            <span class="ctx">+ title: undefined | undefined</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY SAFETY MATTERS HERE ================= -->
+  <section class="section" id="why-safety">
+    <div class="problem">
+      <div class="problem-scenario reveal">
+        <div class="scenario-frame">
+          <div class="scenario-log">
+            <p class="line"><span class="tag">ai&gt;</span> rewriting meta titles across the blog...</p>
+            <p class="line"><span class="tag">ai&gt;</span> setting focus keywords on 120 posts...</p>
+            <p class="line"><span class="tag">ai&gt;</span> cleaning up canonicals and robots flags...</p>
+            <p class="line bad"><span class="tag">error&gt;</span> noindex was set on 120 posts, not 12</p>
+            <p class="crack">Search engines recrawl on their own schedule, not yours. Every hour a bad robots flag stays live, it is quietly deindexing pages that took years to rank.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-points">
+        <span class="eyebrow reveal">Why safety matters for SEO work</span>
+        <div class="problem-point reveal">
+          <span class="num">01</span>
+          <div>
+            <h3>SEO mistakes are invisible until they are expensive.</h3>
+            <p>A wrong price shows up in the next order. A wrong noindex or a broken canonical shows up weeks later, as traffic that quietly stopped coming. By then, nobody remembers which of the 300 edits did it.</p>
+          </div>
+        </div>
+        <div class="problem-point reveal">
+          <span class="num">02</span>
+          <div>
+            <h3>Bulk work is exactly where agents earn their keep, and where they do the most damage.</h3>
+            <p>Rewriting metadata across a whole site is the perfect agent task: repetitive, rule-driven, boring. It is also one prompt misreading away from a site-wide mess. The answer is not to avoid bulk edits. It is to make them reversible.</p>
+          </div>
+        </div>
+        <div class="problem-point reveal">
+          <span class="num">03</span>
+          <div>
+            <h3>Every edit logged, every session one click from undone.</h3>
+            <p>Each metadata write is snapshotted through the same engine that protects every WP MCP change, and grouped into its session. Review the log, restore one post, or roll back the entire bulk run at once.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAPABILITIES ================= -->
+  <section class="section tint" id="capabilities">
+    <div class="section-head reveal">
+      <span class="eyebrow">What the agent can actually do</span>
+      <h2>Metadata, links, and context. Nothing invented.</h2>
+      <p>These are the real ability names the agent calls, registered through the official WordPress Abilities API. WP MCP writes SEO metadata through the plugin you already run, Yoast SEO or Rank Math, using their own fields, so nothing changes in your SEO setup except who is doing the typing. The <a href="docs.html">full reference</a> documents each one.</p>
+    </div>
+
+    <div class="cap-grid">
+      <article class="cap-card reveal">
+        <p class="cap-kicker">01 / SEO metadata <span class="pill pill-safe">safe change</span></p>
+        <h3>Titles, descriptions, keywords, canonicals, robots</h3>
+        <p>Read and write meta title, meta description, focus keyword, canonical URL, and noindex and nofollow flags per post, translated automatically to Yoast or Rank Math fields. Every write is snapshotted first.</p>
+        <div class="cap-chips"><code>get-seo-meta</code><code>update-seo-meta</code><code>get-seo-status</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">02 / Internal linking <span class="pill pill-read">read</span></p>
+        <h3>Map the link graph, find the gaps</h3>
+        <p>Build a site-wide internal link map, surface orphan posts nothing links to, and get suggestions for internal links worth adding. Read-only analysis the agent uses to plan its work.</p>
+        <div class="cap-chips"><code>get-link-map</code><code>suggest-internal-links</code><code>find-orphan-posts</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">03 / Site context <span class="pill pill-read">read</span></p>
+        <h3>The agent knows what site it is on</h3>
+        <p>One call gives the agent the site's structure, content inventory, and configuration, so a bulk metadata pass starts from what is actually there instead of guesses.</p>
+        <div class="cap-chips"><code>get-site-context</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">04 / Safety &amp; history <span class="pill pill-safe">undo</span></p>
+        <h3>Bulk sessions, rolled back in one click</h3>
+        <p>Every metadata edit lands in the operations log under its session. Restore a single post's metadata, or unwind an entire site-wide run, from the AI or from wp-admin.</p>
+        <div class="cap-chips"><code>rollback-operation</code><code>rollback-session</code><code>list-operations</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">05 / Content itself <span class="pill pill-safe">safe change</span></p>
+        <h3>When the fix is the content, not the meta</h3>
+        <p>Sometimes the right SEO move is editing the page: a better heading, an added internal link, a rewritten intro. The same agent does that too, through the same snapshot-first engine.</p>
+        <div class="cap-chips"><code>update-post</code><code>create-post</code><code>list-posts</code></div>
+      </article>
+      <article class="cap-card reveal">
+        <p class="cap-kicker">06 / Honest scope <span class="pill pill-read">plain truth</span></p>
+        <h3>What this is not</h3>
+        <p>WP MCP is not a rank tracker, a keyword research tool, or an audit-score dashboard. It is the layer that lets an agent do real SEO edits on your site safely. Your SEO plugin keeps doing its job; the agent just gets careful hands.</p>
+        <div class="cap-chips"><code>get-seo-status</code></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="section">
+    <div class="final-cta reveal">
+      <span class="eyebrow">Get started</span>
+      <h2>Hand off the metadata grind. Keep the undo.</h2>
+      <p>Install the plugin, connect your AI client over MCP, and let the agent take the first pass at your metadata backlog. The session snapshot is saved before the first edit ever lands.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/wpmcp/wpmcp" data-brand-github>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.11.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          WP MCP on GitHub
+        </a>
+        <a class="btn btn-ghost" href="docs.html">Read the docs</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="brand-mark logo-animated logo-static-in" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="fmarkS" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#2563EB"/>
+              <stop offset="1" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+          <rect width="256" height="256" rx="56" fill="url(#fmarkS)"/>
+          <g class="logo-ring" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" fill="none">
+            <path d="M151.2 70.5 A62 62 0 1 1 104.8 70.5"/>
+          </g>
+          <path class="logo-arrow" d="M80 70.5 L110 52 L110 89 Z" fill="#FFFFFF"/>
+        </svg>
+        <span data-brand-name>WP MCP</span>
+      </a>
+      <p>The AI agent that builds your WordPress site and physically can't wreck it.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#how-it-works">How it works</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="docs.html">Documentation</a></li>
+        <li><a href="mcp-for-woocommerce.html">For WooCommerce</a></li>
+        <li><a href="mcp-for-seo.html" aria-current="page">For SEO</a></li>
+        <li><a href="wp-mcp-vs-other-wordpress-mcp-tools.html">Compare tools</a></li>
+        <li><a href="https://github.com/wpmcp/wpmcp" data-brand-github>GitHub</a></li>
+        <li><a href="https://github.com/wpmcp/wpmcp" data-brand-github>Report an issue</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="https://github.com/wpmcp/wpmcp/blob/main/LICENSE">License, GPL-2.0</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span data-year>2026</span> <span data-brand-name>WP MCP</span>. Source available under GPL-2.0-or-later.</span>
+    <span data-brand-domain>wpmcp-pro.com</span>
+  </div>
+</footer>
+
+<script src="assets/js/brand.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
