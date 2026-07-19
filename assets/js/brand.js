@@ -30,9 +30,6 @@ window.WPMCP_BRAND = {
   }
 };
 
-// Back-compat alias, in case older markup or scripts still reference the
-// previous global name.
-window.DUKANDAR_BRAND = window.WPMCP_BRAND;
 
 // Populate every element carrying a brand slot attribute. Keeps copy in index.html
 // generic/rebrandable without a build step or template engine.

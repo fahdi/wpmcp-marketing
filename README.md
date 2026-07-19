@@ -26,13 +26,13 @@ assets/js/          brand.js, main.js, markdown.js, docs-app.js
 docs/               Markdown content, owned by a separate process; do not edit here
 ```
 
-`fonts.css` self-hosts Fraunces (display serif) and Hanken Grotesk (UI sans) as base64-inlined woff2, subsetted to the glyphs this site actually uses, so there is still zero external network activity. `logo.css` animates the rollback mark (the brand tile in the header, footer, and hero): the ring draws on with `stroke-dashoffset` on load, the arrowhead pops in after, and hovering or focusing any mark triggers a quick counter-rotation. Fully inert under `prefers-reduced-motion: reduce`.
+`fonts.css` self-hosts Hanken Grotesk (display and UI sans; Fraunces subsets remain shipped but unreferenced) as base64-inlined woff2, subsetted to the glyphs this site actually uses, so there is still zero external network activity. The site is dual-theme: a light default and the original dark skin, both defined as token sets in `brand.css` (`:root` and `:root[data-theme="dark"]`), switched by the header toggle and persisted in `localStorage("wpmcp-theme")`. `logo.css` animates the rollback mark (the brand tile in the header, footer, and hero): the ring draws on with `stroke-dashoffset` on load, the arrowhead pops in after, and hovering or focusing any mark triggers a quick counter-rotation. Fully inert under `prefers-reduced-motion: reduce`.
 
 ## Brand config, and how to swap it
 
 Everything brand-specific lives in two files:
 
-- `assets/js/brand.js`, the `window.WPMCP_BRAND` object: product name, tagline, domain, GitHub URL, license, the underlying plugin slug, and the color hexes. Any element with `data-brand-name`, `data-brand-domain`, `data-brand-github`, or `data-brand-plugin-slug` in the HTML is populated from this object on load, so page copy does not need to be hand-edited when the name changes. A `window.DUKANDAR_BRAND` alias points at the same object for back-compat.
+- `assets/js/brand.js`, the `window.WPMCP_BRAND` object: product name, tagline, domain, GitHub URL, license, the underlying plugin slug, and the color hexes. Any element with `data-brand-name`, `data-brand-domain`, `data-brand-github`, or `data-brand-plugin-slug` in the HTML is populated from this object on load, so page copy does not need to be hand-edited when the name changes.
 - `assets/css/brand.css`, the `:root` custom properties: `--brand-primary`, `--brand-accent`, and the rest of the palette/type tokens. Every other stylesheet reads these variables instead of hardcoding colors or fonts.
 
 To rebrand again:
