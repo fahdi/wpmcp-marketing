@@ -1,55 +1,44 @@
 /* ==========================================================================
    BRAND TOKENS, mirrors assets/js/brand.js. Change palette/type here.
+
+   Dual theme. The default (and marketing face) is the light, product-led
+   skin: near-white page, near-black ink, blue→cyan used sparingly as the
+   single accent. The original dark editorial palette lives on under
+   [data-theme="dark"]. A pre-paint inline script in each page's <head>
+   stamps data-theme from localStorage; the header toggle switches it.
+
+   Every stylesheet reads only these variable names, so both themes flow
+   through all pages automatically. The --dk-* scope is the terminal /
+   console / diff panel surface, which is dark in BOTH themes: in light
+   mode it reads as a code-editor window floating on the page.
    ========================================================================== */
 
 :root {
-  /* Brand palette (from product icon) */
+  /* ---- Shared: brand hues, type, rhythm, motion ---- */
   --brand-primary: #2563eb;
+  --brand-primary-deep: #1d4ed8;
   --brand-primary-soft: #4f7df0;
   --brand-accent: #06b6d4;
   --brand-accent-soft: #37d3e8;
 
-  /* Dark background system, kept refined and trustworthy rather than a cold
-     server-room black, so it reads welcoming to a shop owner, not just a
-     developer. A faint warm undertone (not brown, just less blue-black). */
-  --bg-void: #07080d;
-  --bg-base: #0c0f16;
-  --bg-raised: #12161f;
-  --bg-panel: #161b26;
-  --bg-panel-2: #1c222e;
-  --hairline: rgba(160, 172, 194, 0.14);
-  --hairline-strong: rgba(160, 172, 194, 0.27);
-
-  /* Text, warmed a shade off pure blue-gray for friendlier reading */
-  --ink-000: #f6f5f2;
-  --ink-100: #dcdce2;
-  --ink-300: #adb3c2;
-  --ink-500: #7c8399;
-  --ink-700: #4e5567;
-
-  /* Signal colors, slightly warmer/friendlier than clinical status-light hues */
-  --signal-ok: #3ddc9b;
-  --signal-warn: #f2b23e;
-  --signal-danger: #f16a72;
-
   /* Type. No CDNs, no Google Fonts <link>, ever, this stays a strict-CSP,
-     offline-safe, zero-network-call site. Fraunces and Hanken Grotesk are
-     self-hosted instead: subsetted to the exact glyphs this site uses,
-     converted to woff2, and inlined as base64 data URIs in fonts.css, so
-     there is still no external request, just bytes shipped with the page.
-     Display copy gets Fraunces (a warm, editorial serif with real
-     character, the antidote to another Playfair/Inter pairing); UI copy
-     gets Hanken Grotesk (humanist, confident, a little wider than the
-     default-grotesk crowd); code/data keeps a real system monospace,
-     a webfont buys nothing there and only adds weight. */
-  --font-display: "Fraunces Disp", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-sans: "Hanken Grotesk", "Charter", "Segoe UI Semibold", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+     offline-safe, zero-network-call site. Hanken Grotesk is self-hosted:
+     subsetted, converted to woff2, inlined as base64 in fonts.css (weights
+     400 / 600 / 700). Display copy is Hanken Grotesk 700 set tight, big,
+     and confident; it tops out at 700, so headings rely on scale and
+     tracking rather than a synthesized faux-black. Code/data keeps a real
+     system monospace, a webfont buys nothing there. Fraunces stays in
+     fonts.css but is no longer referenced; the serif era is over. */
+  --font-display: "Hanken Grotesk", "Segoe UI Semibold", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Hanken Grotesk", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "SFMono-Regular", "Berkeley Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  --display-weight: 700;
+  --display-tracking: -0.025em;
 
   /* Rhythm */
   --radius-sm: 8px;
   --radius-md: 14px;
-  --radius-lg: 22px;
+  --radius-lg: 18px;
   --container: 1180px;
   --edge: clamp(20px, 5vw, 64px);
 
@@ -59,6 +48,121 @@
   --dur-fast: 180ms;
   --dur-med: 420ms;
   --dur-slow: 900ms;
+
+  /* ---- LIGHT THEME (default, also no-JS fallback) ---- */
+
+  /* Accent-colored text on light surfaces needs deeper cousins of the
+     brand hues to clear WCAG AA; raw brand colors stay for gradients,
+     dots, borders, and anything on the dark panels. */
+  --accent-ink: #0e7490;
+  --link-ink: #1d4ed8;
+
+  /* Surfaces */
+  --bg-base: #fbfbfd;   /* page */
+  --bg-raised: #f5f6fa; /* tinted bands */
+  --bg-panel: #ffffff;  /* cards */
+  --bg-panel-2: #eef1f6;/* chips, hovers */
+  --card-hover: #fafbfe;
+  --hairline: rgba(17, 24, 39, 0.08);
+  --hairline-strong: rgba(17, 24, 39, 0.16);
+  --header-bg: rgba(251, 251, 253, 0.82);
+
+  /* Ink. 000 headings, 100 strong body, 300 body/muted (7.5:1),
+     500 soft muted (5.4:1), 700 decorative only. */
+  --ink-000: #0e1526;
+  --ink-100: #232d40;
+  --ink-300: #46536d;
+  --ink-500: #5b6880;
+  --ink-700: #77839c;
+
+  /* Dark panel scope: terminals, consoles, diffs. A refined navy. */
+  --bg-void: #0a0e18;   /* deepest: diff blocks, code */
+  --dk-bg: #0e1320;     /* panel body */
+  --dk-panel: #151b2a;  /* panel top sheen */
+  --dk-panel-2: #1a2133;
+  --dk-ink: #e8ebf4;
+  --dk-muted: #9aa4bd;
+  --dk-faint: #7e89a4;
+  --dk-hairline: rgba(232, 235, 244, 0.08);
+  --dk-hairline-strong: rgba(232, 235, 244, 0.16);
+  --panel-border: rgba(15, 23, 42, 0.9); /* edge of a dark panel on light */
+
+  /* Signal colors. Raw values read well on the dark panels; the -ink
+     variants are the AA-safe versions for the theme's own surfaces. */
+  --signal-ok: #3ddc9b;
+  --signal-warn: #f2b23e;
+  --signal-danger: #f16a72;
+  --ok-ink: #047857;
+  --warn-ink: #a16207;
+  --danger-ink: #b91c1c;
+
+  /* Atmosphere + accents */
+  --atmo-blue: rgba(37, 99, 235, 0.07);
+  --atmo-cyan: rgba(6, 182, 212, 0.06);
+  --grid-line: rgba(17, 24, 39, 0.05);
+  --tint-band: rgba(37, 99, 235, 0.025);
+  --cta-glow: rgba(37, 99, 235, 0.07);
+  --grad-from: #2563eb;
+  --grad-to: #0891b2;
+  --focus-ring: #2563eb;
+  --scroll-thumb: #cdd4e0;
+
+  /* Card shadows: small and soft, never smoky */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-card: 0 1px 3px rgba(16, 24, 40, 0.05), 0 10px 28px -14px rgba(16, 24, 40, 0.10);
+  --shadow-panel: 0 1px 2px rgba(15, 23, 42, 0.20), 0 28px 56px -24px rgba(15, 23, 42, 0.32);
+  --shadow-pre: 0 1px 2px rgba(15, 23, 42, 0.15), 0 14px 30px -18px rgba(15, 23, 42, 0.25);
+}
+
+/* ---- DARK THEME (the original editorial palette) ---- */
+:root[data-theme="dark"] {
+  --accent-ink: #37d3e8;
+  --link-ink: #37d3e8;
+
+  --bg-base: #0c0f16;
+  --bg-raised: #12161f;
+  --bg-panel: #161b26;
+  --bg-panel-2: #1c222e;
+  --card-hover: #1c222e;
+  --hairline: rgba(160, 172, 194, 0.14);
+  --hairline-strong: rgba(160, 172, 194, 0.27);
+  --header-bg: rgba(10, 14, 20, 0.72);
+
+  --ink-000: #f6f5f2;
+  --ink-100: #dcdce2;
+  --ink-300: #adb3c2;
+  --ink-500: #7c8399;
+  --ink-700: #4e5567;
+
+  --bg-void: #07080d;
+  --dk-bg: #12161f;
+  --dk-panel: #161b26;
+  --dk-panel-2: #1c222e;
+  --dk-ink: #dcdce2;
+  --dk-muted: #adb3c2;
+  --dk-faint: #7c8399;
+  --dk-hairline: rgba(160, 172, 194, 0.14);
+  --dk-hairline-strong: rgba(160, 172, 194, 0.27);
+  --panel-border: rgba(160, 172, 194, 0.27);
+
+  --ok-ink: #3ddc9b;
+  --warn-ink: #f2b23e;
+  --danger-ink: #f16a72;
+
+  --atmo-blue: rgba(37, 99, 235, 0.24);
+  --atmo-cyan: rgba(6, 182, 212, 0.16);
+  --grid-line: rgba(160, 172, 194, 0.10);
+  --tint-band: rgba(160, 172, 194, 0.03);
+  --cta-glow: rgba(37, 99, 235, 0.22);
+  --grad-from: #4f7df0;
+  --grad-to: #37d3e8;
+  --focus-ring: #37d3e8;
+  --scroll-thumb: #1c222e;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.25), 0 16px 36px -20px rgba(0, 0, 0, 0.5);
+  --shadow-panel: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
+  --shadow-pre: 0 12px 28px -18px rgba(0, 0, 0, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {

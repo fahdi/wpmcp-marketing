@@ -6,10 +6,10 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 18px var(--edge);
-  background: rgba(10, 14, 20, 0.72);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  padding: 16px var(--edge);
+  background: var(--header-bg);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -18,19 +18,47 @@
   margin-inline: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
 }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Theme switcher: a quiet round button; moon in light mode, sun in dark */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-300);
+  background: transparent;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.theme-toggle:hover {
+  color: var(--ink-000);
+  border-color: var(--brand-primary);
+  transform: translateY(-1px);
+}
+.theme-toggle svg { width: 16px; height: 16px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 .brand-mark {
   display: flex;
   align-items: center;
   gap: 11px;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 19px;
+  font-weight: 700;
+  font-size: 18px;
   color: var(--ink-000);
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
 }
 
 .brand-mark svg { width: 30px; height: 30px; flex-shrink: 0; }
@@ -43,7 +71,7 @@
 
 .site-nav a {
   font-size: 14.5px;
-  color: var(--ink-300);
+  color: var(--ink-500);
   transition: color var(--dur-fast) var(--ease-out);
   position: relative;
 }
@@ -64,16 +92,34 @@
 }
 .site-nav a:not(.btn):hover::after { transform: scaleX(1); }
 
-.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links { display: flex; align-items: center; gap: 28px; margin-left: auto; }
+
+.nav-links a { font-size: 14.5px; color: var(--ink-500); transition: color var(--dur-fast) var(--ease-out); position: relative; }
+.nav-links a[aria-current="page"] { color: var(--ink-000); }
+.nav-links a:not(.btn):hover { color: var(--ink-000); }
+.nav-links a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -7px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.nav-links a:not(.btn):hover::after { transform: scaleX(1); }
+.nav-links a.btn { color: #fff; }
 
 .nav-toggle {
   display: none;
   padding: 8px;
+  color: var(--ink-100);
 }
 .nav-toggle svg { width: 22px; height: 22px; }
 
 @media (max-width: 760px) {
   .nav-toggle { display: inline-flex; }
+  .header-controls { margin-left: auto; }
 
   /* backdrop-filter on .site-header creates a containing block for any
      fixed-position descendant, which would otherwise collapse this panel
@@ -107,7 +153,8 @@
     opacity: 1;
     pointer-events: auto;
   }
-  .nav-links a { font-size: 18px; }
+  .nav-links a { font-size: 18px; color: var(--ink-100); }
+  .nav-links a.btn { color: #fff; }
 }
 
 /* ==========================================================================
@@ -116,8 +163,11 @@
 
 .site-footer {
   border-top: 1px solid var(--hairline);
+  background: var(--bg-raised);
   padding: 56px var(--edge) 36px;
   margin-top: 120px;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-grid {
@@ -154,7 +204,7 @@
   color: var(--ink-300);
   transition: color var(--dur-fast) var(--ease-out);
 }
-.footer-col a:hover { color: var(--brand-accent-soft); }
+.footer-col a:hover { color: var(--link-ink); }
 
 .footer-bottom {
   max-width: var(--container);
@@ -166,6 +216,6 @@
   flex-wrap: wrap;
   gap: 12px;
   font-size: 13px;
-  color: var(--ink-700);
+  color: var(--ink-500);
   font-family: var(--font-mono);
 }
